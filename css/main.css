@@ -272,16 +272,45 @@ a.inverted:hover{
 
 #controlsContainer{
 	display: inline-block;
+	position: relative;
 }
+
+/*********************************************************************************/
+/******************************      TAB WRAPPER      ****************************/
+/*********************************************************************************/
+.scenarioTab{
+	font-size: 30px;
+	display: inline-block;
+	float: right;
+	margin-left: 20px;
+	margin-top: 20px;
+	margin-bottom: 40px;
+}
+.scenarioTab.active{
+	color: red;
+}
+.scenarioContainer.hidden{
+	position: absolute;
+    top: 96px;
+    z-index: -1;
+    opacity: 0;
+    pointer-events: none;
+}
+
 /*********************************************************************************/
 /*******************************      INPUTS      ********************************/
 /*********************************************************************************/
 
+
 .inputContainer{
 	width: 300px;
     padding-right: 85px;
+    margin-top: 96px;
     display: inline-block;
     float: left;
+}
+.scenarioContainer.hidden .inputContainer{
+	margin-top: 0px;
 }
 .h1.colorText{
 	font-size: 22px;
@@ -301,6 +330,10 @@ a.inverted:hover{
 .legend{
 	margin-top: 30px;
 	margin-bottom: 30px;
+}
+.sliderLabel{
+	display: inline;
+    font-weight: bold;
 }
 .sidebar.button{
     background: #169dd2;
@@ -366,6 +399,65 @@ a.inverted:hover{
 	margin-right: 5px;
 }
 
+
+/*********************************************************************************/
+/***********************      CUSTOM RADIO BUTTONS      **************************/
+/*********************************************************************************/
+input[type="radio"]{
+  display: none;
+}
+
+.radioRow label {
+	position: relative;
+}
+
+.radioRow label {
+	position: relative;
+}
+.radioRow span::before,
+.radioRow span::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+}
+.radioRow span.radio:hover {
+	cursor: pointer;
+}
+.radioRow span.radio::before {
+	left: -22px;
+	top: -4px;
+	width: 15px;
+	height: 15px;
+	background-color: #ffffff;
+	border-radius: 50px;
+}
+.radioRow span.s1.radio::before{
+	border: 2px solid #1696d2;
+}
+.radioRow span.s2.radio::before{
+	border: 2px solid #408941;
+}
+
+
+.radioRow span.radio::after {
+	left: -18px;
+	top: -4px;
+	width: 11px;
+	height: 11px;
+	border-radius: 10px;
+	background-color: #ffffff;
+	transition: left .25s, background-color .25s;
+}
+input[type="radio"]:checked + label span.s1.radio::after {
+	background-color: #1696d2;
+}
+input[type="radio"]:checked + label span.s2.radio::after {
+	background-color: #408941;
+}
+
+
 /*********************************************************************************/
 /******************************      BAR CHARTS      *****************************/
 /*********************************************************************************/
@@ -391,21 +483,40 @@ a.inverted:hover{
 .bar{
 	stroke: none;
 }
-.income.bar{
+.s1.income.bar{
 	fill: #0A4C6A;
 }
-.race.bar{
+.s1.race.bar{
 	fill: #12719E;
 }
-.instType.bar{
+.s1.instType.bar{
 	fill: #1696D2;
 }
-.parentsEd.bar{
+.s1.parentsEd.bar{
 	fill: #73BFE2;
 }
-.benefits.bar{
+.s1.benefits.bar{
 	fill: #B3DFF3;
 }
+
+.s2.income.bar{
+	fill: #2C5C2D;
+}
+.s2.race.bar{
+	fill: #408941;
+}
+.s2.instType.bar{
+	fill: #55B748;
+}
+.s2.parentsEd.bar{
+	fill: #98CF90;
+}
+.s2.benefits.bar{
+	fill: #BCDEB4;
+}
+
+
+
 .baselineBar{
 	fill: #E5E5E5;
 }

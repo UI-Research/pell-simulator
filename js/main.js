@@ -1,10 +1,29 @@
 var S1_DEFAULTS = {"a": "7000"}
 var S2_DEFAULTS = {"a": "5000", "b": "0.5", "c": "1"}
 var CHART_LABELS = ["","First quartile, dependent","Second quartile, dependent","Third quartile, dependent","Fourth quartile, dependent","Independent students","High school diploma or less","Associate’s degree or some college","Bachelor’s degree","Master’s or higher","White students","Black or African American","Hispanic or Latino","Asian","Another race","Public 4-year","Private nonprofit 4-year","Public 2-year","Private for profit","Other","No benefits","Receiving some benefits"]
- var BAR_HEIGHT = 50;
+var BAR_HEIGHT = 50;
+
+var THOUSANDS = d3.format("$,")
+var PERCENT = d3.format(".0%")
+var BILLIONS = function(val){
+	var b = d3.format("$.3s")(val)
+	return(b.replace(/G/," billion").replace(/M/, " million").replace(/k/, " thousand"))
+}
+var BIG_BILLIONS = function(val){
+	var b = d3.format("$.4s")(val)
+	return(b.replace(/G/," billion").replace(/M/, " million").replace(/k/, " thousand"))
+}
+
+var BASELINE_KEY = "s1_4000_percent_baseline"
+
+
+
+
+
+
 
 function getScenario(){
-	return "s1"
+	return (d3.select(".scenarioTab.s1").classed("active")) ? "s1" : "s2"
 }
 
 function getUnits(){
@@ -12,20 +31,27 @@ function getUnits(){
 	return "percent"
 }
 
-function getInputs(){
-	var scenario = getScenario();
+function getInputs(scenario){
 	var units = getUnits();
-	return {"a": d3.select(".slider.a.s1").node().value }
+
+	if(scenario == "s1"){
+		return {"a": d3.select(".slider.a.s1").node().value }
+	}else{
+		return {
+			"a": d3.select(".slider.a.s2").node().value,
+			"b": d3.select(".slider.b.s2").node().value,
+			"c": d3.select(".slider.c.s2").node().value
+		}
+	}
 }
 
 function toKeyString(s){
 	return s;
 }
 
-function getKey(){
-	var scenario = getScenario()
+function getKey(scenario){
 	var units = getUnits()
-	var inputs = getInputs()
+	var inputs = getInputs(scenario)
 
 	if (scenario == "s1"){
 		return scenario + "_" + toKeyString(inputs["a"]) + "_" + units
@@ -65,15 +91,6 @@ function buildChart(allData, category, scenario){
 	x.domain([0, .85]);
 	y.domain(data.map(function(d) { return d.label; })).padding(0.4);
 
-	// g.append("g")
-	// .attr("class", "x axis")
-	// .attr("transform", "translate(0," + height + ")")
-	// .call(d3.axisBottom(x).ticks(5).tickFormat(function(d) { return parseInt(d / 1000); }).tickSizeInner([-height]));
-
-	// g.append("g")
-	// .attr("class", "y axis")
-	// .call(d3.axisLeft(y));
-
 	chartContainer.selectAll(".tickLabel")
 		.data(data)
 		.enter().append("div")
@@ -89,7 +106,7 @@ function buildChart(allData, category, scenario){
 	.attr("x", 0)
 	.attr("height", BAR_HEIGHT*.75)
 	.attr("y", function(d) { return y(d.label); })
-	.attr("width", function(d) { return x(d[scenario + "_4000_percent_baseline"]); })
+	.attr("width", function(d) { return x(d[BASELINE_KEY]); })
 
 	g.selectAll(".bar")
 	.data(data)
@@ -98,14 +115,14 @@ function buildChart(allData, category, scenario){
 	.attr("x", 0)
 	.attr("height", BAR_HEIGHT*.75)
 	.attr("y", function(d) { return y(d.label); })
-	.attr("width", function(d) { return x(d[getKey()]); })
+	.attr("width", function(d) { return x(d[getKey(scenario)]); })
 
 	g.selectAll(".baselineLine")
 	.data(data)
 	.enter().append("line")
 	.attr("class", scenario + " " + "baselineLine")
-	.attr("x1", function(d) { return x(d[scenario + "_4000_percent_baseline"]); })
-	.attr("x2", function(d) { return x(d[scenario + "_4000_percent_baseline"]); })
+	.attr("x1", function(d) { return x(d[BASELINE_KEY]); })
+	.attr("x2", function(d) { return x(d[BASELINE_KEY]); })
 	.attr("y1", function(d) { return y(d.label); })
 	.attr("y2", function(d) { return y(d.label) + BAR_HEIGHT*.75; })
 
@@ -113,23 +130,79 @@ function buildChart(allData, category, scenario){
 	.data(data)
 	.enter().append("circle")
 	.attr("class", scenario + " " + "baselineDot")
-	.attr("cx", function(d) { return x(d[scenario + "_4000_percent_baseline"]); })
+	.attr("cx", function(d) { return x(d[BASELINE_KEY]); })
 	.attr("cy", function(d) { return y(d.label) + BAR_HEIGHT*.75*.5; })
 	.attr("r", 5)
 
 }
 
-function buildCostData(data, scenario){
+function updateCostData(scenario){
+	var oneYear = d3.select(".oneYear." + scenario).datum()
+	var tenYear = d3.select(".tenYear." + scenario).datum()
 
+	console.log(oneYear, tenYear)
+
+	var key = getKey(scenario)
+
+	var baseline1 = +oneYear[BASELINE_KEY] * 1000000000
+	var baseline10 = +tenYear[BASELINE_KEY] * 1000000000
+	var val1 = +oneYear[key] * 1000000000
+	var val10 = +tenYear[key] * 1000000000
+
+	console.log(key, val1, oneYear)
+
+	d3.select(".oneYear." + scenario + " .costVal").text(BILLIONS(val1))
+	d3.select(".tenYear." + scenario + " .costVal").text(BIG_BILLIONS(val10))
+
+	d3.select(".oneYear." + scenario + " .baselineText").text(function(){
+		var diff = val1 - baseline1
+		if(diff > 0){
+			return BILLIONS(Math.abs(diff)) + " above current cost"
+		}
+		else if(diff < 0){
+			return BILLIONS(Math.abs(diff)) + " below current cost"
+		}
+		else{
+			return "Equal to current cost"
+		}
+	})
+
+	d3.select(".tenYear." + scenario + " .baselineText").text(function(){
+		var diff = val10 - baseline10
+		if(diff > 0){
+			return BIG_BILLIONS(Math.abs(diff)) + " above current cost"
+		}
+		else if(diff < 0){
+			return BIG_BILLIONS(Math.abs(diff)) + " below current cost"
+		}
+		else{
+			return "Equal to current cost"
+		}
+	})
+	
+
+}
+
+function buildCostData(allData, scenario){
+	var data = allData
+		.filter(function(o){ return o.category == "cost" })
+
+	var oneYear = data.filter(function(o){ return o.subcategory == "1yr" })[0]
+	var tenYear = data.filter(function(o){ return o.subcategory == "10yr" })[0]
+
+	d3.select(".oneYear." + scenario).datum(oneYear)
+	d3.select(".tenYear." + scenario).datum(tenYear)
+
+	updateCostData(scenario)
 }
 
 function buildAverageData(data, scenario){
 
 }
 
-function updateCharts(){
+function updateCharts(scenario){
 	var unit = getUnits();
-	var key = getKey();
+	var key = getKey(scenario);
 
 	var w = 300
 
@@ -140,17 +213,32 @@ function updateCharts(){
 	var x = d3.scaleLinear().range([0, width]);
 	x.domain([0, .85]);
 
-	d3.selectAll(".bar")
+	d3.selectAll(".bar." + scenario)
 	.transition()
-	.attr("width", function(d) { return x(d[key]); })
+	.attr("width", function(d) {
+		return x(d[key]);
+	})
 
 	//update baseline, since units might change too
 
 }
 
-function updateCostData(){
-
+function updateInputs(scenario){
+	if(scenario == "s1"){
+		d3.select(".sliderLabel.a.s1").text(THOUSANDS(d3.select("input.s1.a").node().value))
+	}else{
+		d3.select(".sliderLabel.a.s2").text(THOUSANDS(d3.select("input.s2.a").node().value))
+		d3.select(".sliderLabel.b.s2").text(PERCENT(d3.select("input.s2.b").node().value))
+		d3.select(".sliderLabel.c.s2").text(PERCENT(d3.select("input.s2.c").node().value))
+	}
 }
+
+function checkInputs(){
+	if(d3.select("input.s2.b").node().value > d3.select("input.s2.c").node().value){
+		d3.select("input.s2.b").node().value = d3.select("input.s2.c").node().value
+	}
+}
+
 
 function updateAverageData(){
 
@@ -160,6 +248,29 @@ function updateScenario(scenario){
 
 }
 
+function showScenario(scenario){
+	var show = d3.select("#" + scenario + "Container")
+	var other = (scenario == "s1") ? "s2" : "s1"
+	var hide = d3.select("#" + other + "Container");
+
+	show
+		.transition()
+		.duration(1000)
+		.style("opacity",1)
+		.on("end", function(){
+			show.classed("hidden", false)
+		})
+	hide
+		.transition()
+		.duration(1000)
+		.style("opacity",0)
+		.on("end", function(){
+			hide.classed("hidden", true)
+		})
+
+	d3.select(".scenarioTab." + scenario).classed("active", true)
+	d3.select(".scenarioTab." + other).classed("active", false)
+}
 
 function init(data){
 	buildChart(data, "income", "s1")
@@ -168,37 +279,45 @@ function init(data){
 	buildChart(data, "instType", "s1")
 	buildChart(data, "benefits", "s1")
 
-	// buildChart("income", "s2")
-	// buildChart("parentsEd", "s2")
-	// buildChart("race", "s2")
-	// buildChart("instType", "s2")
-	// buildChart("benefits", "s2")
+	buildChart(data, "income", "s2")
+	buildChart(data, "parentsEd", "s2")
+	buildChart(data, "race", "s2")
+	buildChart(data, "instType", "s2")
+	buildChart(data, "benefits", "s2")
 
 	buildCostData(data, "s1")
-	// buildCostData("s2")
+	buildCostData(data, "s2")
 
 	buildAverageData(data, "s1")
 	// buildAverageData("s2")
 
+	updateInputs("s1");
+	updateInputs("s2");
+
 
 }
 
-d3.select("body")
-	.on("click", function(){
-		updateCharts()
-	})
-
-
-d3.select(".slider.a.s1").on("input", function(){
-	updateCharts();
+d3.select(".scenarioTab.s1").on("click", function(){
+	showScenario("s1")
+})
+d3.select(".scenarioTab.s2").on("click", function(){
+	showScenario("s2")
 })
 
-function getMinDiff(data){
-	// data.forEach()
-	console.log(data)
-}
+d3.selectAll(".slider.s1").on("input", function(){
+	updateCharts("s1");
+	updateInputs("s1");
+	updateCostData("s1")
+})
+d3.selectAll(".slider.s2").on("input", function(){
+	checkInputs()
+	updateCharts("s2");
+	updateInputs("s2");
+	updateCostData("s2")
+})
+
+
 
 d3.csv("data/data.csv", function(data){
 	init(data)
-	getMinDiff(data)
 })

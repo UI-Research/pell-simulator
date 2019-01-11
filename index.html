@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <meta name="description" content="DESC GOES HERE">
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-        <title>Financial Health of Residents: A City-Level Dashboard</title>
+        <title>Pell Simulator</title>
 
         <meta name="twitter:card" content="summary">
         <meta name="twitter:site" content="@urbaninstitute">
@@ -99,22 +99,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <!-- TITLE BLOCK -->
     <div id = "titleContainer">
       <img src = "img/print-logo-full.png" id  = "home-print-logo"/>
-      <div id = "title">Financial Health of Residents</div>
-      <div id = "subtitle">A City-Level Dashboard</div>
+      <div id = "title">Pell Simulator</div>
+      <div id = "subtitle">A subtitle</div>
 
-      <p class = "introText">The <a href = "https://www.urban.org/policy-centers/cross-center-initiatives/opportunity-ownership/projects/thriving-residents-thriving-cities">financial health of a city</a> is closely intertwined with that of its residents. Financially healthy residents are better able to weather difficult times, are less likely to need city supports and services, and can contribute more to the local economy by supporting property, sales, and income taxes.</p>
-      <p class = "introText">Our data dashboard provides a unique snapshot of residents&rsquo; financial health, including credit bureau data, to tell the story of city financial health. Recognizing that cities differ and their residents&rsquo; needs are diverse, we construct city peer groups to highlight shared challenges and promising interventions. What&rsquo;s your city&rsquo;s picture of financial health?</p>
+      <p class = "introText">orem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit. orem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit.</p>
+      <p class = "introText">orem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit. orem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit.</p>
     </div>
     <!-- END TITLE BLOCK -->
 
     <img src = "img/homepage-print-fallback.png" id = "print-fallback"/>
     <div id = "controlsContainer">
       <div id = "scenarioTabs">
-        <div class = "scenarioTab s1">Scenario 1</div>
+        <div class = "scenarioTab s1 active">Scenario 1</div>
         <div class = "scenarioTab s2">Scenario 2</div>
       </div>
+
     <!-- START S1 CONTAINER -->
-      <div id = "s1Container">
+      <div id = "s1Container" class = "scenarioContainer">
         <div class = "inputContainer s1">
           <div class = "h1 colorText s1">Name of scenario 1</div>
           <div class = "p1 s1">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit.</div>
@@ -123,6 +124,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
           <div class = "h2 colorText s1">Maximum pell grant</div>
           <input class = "slider a s1" min = 4000 max = 10000 value = 6000 step = 250 type = "range">
+          <div class = "sliderLabel a s1 dollars"></div>
           <div class = "p1 s1">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet.</div>
 
           <div class = "sidebar button print">View printable data</div>
@@ -130,16 +132,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         <div class = "chartContainer s1">
           <div class = "costContainer s1">
-            <div id = "oneYear costSubcontainer s1">
-              <div class = "largeText colorText s1"><span>$30.0</span> billion</div>
+            <div class = "oneYear costSubcontainer s1">
+              <div class = "largeText colorText s1 costVal"></div>
               <div class = "chartHeader s1">annual program cost</div>
-              <div class = "baselineText">At baseline</div>
+              <div class = "baselineText"></div>
             </div>
 
-            <div id = "tenYear costSubcontainer s1">
-              <div class = "medText colorText s1"><span>$30.0</span> billion</div>
+            <div class = "tenYear costSubcontainer s1">
+              <div class = "medText colorText s1 costVal"></div>
               <div class = "chartLabel s1">10 year program cost</div>
-              <div class = "baselineText">At baseline</div>
+              <div class = "baselineText"></div>
             </div>
           </div>
 
@@ -148,23 +150,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <div class = "largeText colorText s1"><span>46%</span></div>
               <div class = "radioContainer s1 percent">
                 <div class = "radioRow percent">
-                  <input type = "radio" class = "percent">
-                  <div class = "chartHeader s1">Percent receiving pell</div>
+                  <input type = "radio" class = "percent" id = "percent-s1" name="s1" checked="checked">
+                  <label for="percent-s1"><span class="radio chartHeader s1">Percent receiving pell</span></label>
                 </div>
                 <div class = "radioRow dollars">
-                  <input type = "radio" class = "dollars">
-                  <div class = "chartHeader s1">Average pell grant</div>
+                  <input type = "radio" class = "percent" id = "dollars-s1" name="s1">
+                  <label for="dollars-s1"><span class="radio chartHeader s1">Average Pell grant</span></label>
                 </div>
               </div>
-              <div class = "baselineText">At baseline</div>
+              <div class = "baselineText"></div>
             </div>
           </div>
-
-<!--             buildChart("income", "s1")
-  buildChart("parentsEd", "s1")
-  buildChart("race", "s1")
-  buildChart("instType", "s1")
-  buildChart("benefits", "s1") -->
 
           <div class = "barCharts s1">
             <div class = "barContainer income s1">
@@ -200,6 +196,103 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <!-- END S1 CONTAINER -->
 
 
+    <!-- START S2 CONTAINER -->
+      <div id = "s2Container" class = "scenarioContainer hidden">
+        <div class = "inputContainer s2">
+          <div class = "h1 colorText s2">Name of scenario 2</div>
+          <div class = "p1 s2">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit.</div>
+
+          <div class = "legend s2"><span>O</span> Baseline value (current policy)</div>
+
+          <div class = "h2 colorText s2">Maximum pell grant</div>
+          <input class = "slider a s2" min = 4000 max = 10000 value = 6000 step = 1000 type = "range">
+          <div class = "sliderLabel a s2 dollars"></div>
+          <div class = "p1 s2">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet.</div>
+
+          <div class = "h2 colorText s2">Phase out begins</div>
+          <input class = "slider b s2" min = 0 max = 2.5 value = 1 step = .5 type = "range">
+          <div class = "sliderLabel b s2 percent"></div>
+          <div class = "p1 s2">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet.</div>
+
+          <div class = "h2 colorText s2">Phase out ends</div>
+          <input class = "slider c s2" min = 1 max = 3.5 value = 2 step = .5 type = "range">
+          <div class = "sliderLabel c s2 percent"></div>
+          <div class = "p1 s2">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet.</div>
+
+
+
+          <div class = "sidebar button print">View printable data</div>
+        </div>
+
+        <div class = "chartContainer s2">
+          <div class = "costContainer s2">
+            <div class = "oneYear costSubcontainer s2">
+              <div class = "largeText colorText s2 costVal"></div>
+              <div class = "chartHeader s2">annual program cost</div>
+              <div class = "baselineText"></div>
+            </div>
+
+            <div class = "tenYear costSubcontainer s2">
+              <div class = "medText colorText s2 costVal"></div>
+              <div class = "chartLabel s2">10 year program cost</div>
+              <div class = "baselineText"></div>
+            </div>
+          </div>
+
+          <div class = "avgContainer s2">
+            <div class = "avgSubcontainer s2">
+              <div class = "largeText colorText s2"><span>46%</span></div>
+              <div class = "radioContainer s2 percent">
+                <div class = "radioRow percent">
+                  <input type = "radio" class = "percent" id = "percent-s2" name="s2" checked="checked">
+                  <label for="percent-s2"><span class="radio chartHeader s2">Percent receiving pell</span></label>
+                </div>
+                <div class = "radioRow dollars">
+                  <input type = "radio" class = "percent" id = "dollars-s2" name="s2">
+                  <label for="dollars-s2"><span class="radio chartHeader s2">Average Pell grant</span></label>
+                </div>
+              </div>
+              <div class = "baselineText"></div>
+            </div>
+          </div>
+
+          <div class = "barCharts s2">
+            <div class = "barContainer income s2">
+              <div class = "chartHeader">Income</div>
+              <div class = "chart"></div>
+            </div>
+
+            <div class = "barContainer race s2">
+              <div class = "chartHeader">Race/ethnicity</div>
+              <div class = "chart"></div>
+            </div>
+
+            <div class = "barContainer instType s2">
+              <div class = "chartHeader">Institutional Sector</div>
+              <div class = "chart"></div>
+            </div>
+
+            <div class = "barContainer parentsEd s2">
+              <div class = "chartHeader">Parents&rsquo; Education</div>
+              <div class = "chart"></div>
+            </div>
+
+            <div class = "barContainer benefits s2">
+              <div class = "chartHeader">Receiving federal benefits</div>
+              <div class = "chart"></div>
+            </div>
+            <div class = "barContainer blank s2">
+              <div class = "chart"></div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <!-- END S2 CONTAINER -->
+
+
+
+
+
   </div>
   </div>
   <!-- END MAIN CONTENT -->
@@ -208,12 +301,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id = "footerContainer">
     <div id = "footerContent">
       <div class = "footerHeader" id = "topFooterHeader">About the data</div>
-      <p class = "footerAbout">This dashboard contains information derived from a random sample of deidentified, consumer-level records from a major credit bureau, as well as estimates from summary tables of the US Census Bureau&rsquo;s decennial census and the American Community Survey. Additional data were drawn from tabulations of IRS tax filing data by the Brookings Institution and the Federal Deposit Insurance Corporation&rsquo;s National Survey of Unbanked and Underbanked Households.</p>
-      <p class = "footerAbout" id = "footerAnchor">View and download the <a href = "financial-health-of residents_technical-appendix.pdf" target ="_blank">technical appendix</a>.</p>
-      <p class = "footerAbout">Please contact <a href = "mailto:externalaffairs@urban.org">externalaffairs@urban.org</a> for more information.</p>
+      <p class = "footerAbout">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit.</p>
 
       <div class = "footerHeader">PROJECT CREDITS</div>
-      <p class = "footerCredits">This feature was funded by a grant from JPMorgan Chase. We are grateful to them and to all our funders, who make it possible for Urban to advance its mission. Special thanks to our advisory group members, listed below, many of whom work with cities to implement strategies like those recommended here. Their insights greatly informed and strengthened our work.</p>
+      <p class = "footerCredits">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit.</p>
 
       <div class = "footerSpecialCredit">
         <div>Heidi Goldberg, <a href = "http://www.nlc.org/" target = "_blank">National League of Cities</a></div>
@@ -223,24 +314,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div>Sarah Treuhaft, <a href = "http://www.policylink.org/" target = "_blank">PolicyLink</a></div>
       </div>
 
-      <p class = "footerCredits">Additionally, we are grateful to Elizabeth Kneebone and Cecile Murray for sharing tabulations of administrative IRS tax filing records from the Brookings Institution. We also thank Urban Institute colleagues Liza Getsinger, Solomon Greene, Courtney Jones, Elaine Maag, Erika Poethig, Ellen Seidman, and Shayne Spaulding for their valuable input and feedback, as well as Veronica Gaitan, Hannah Hassani, Emma Kalish, and Janae Ladet for research assistance and operations support.</p>
+      <p class = "footerCredits">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit.</p>
 
-      <p class = "footerCredits" id = "bottomFooterCredits">The views expressed are those of the authors and should not be attributed to the Urban Institute, its trustees, or its funders. Funders do not determine research findings or the insights and recommendations of our experts. More information on our funding principles is available <a href = "https://www.urban.org/support/funding-principles" target = "_blank">here</a>. Read our terms of service <a href = "https://www.urban.org/terms-service" target = "_blank">here</a>.</p>
+      <p class = "footerCredits" id = "bottomFooterCredits">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit.</p>
 
       <div class = "creditsHeader">RESEARCH</div>
-      <div class = "creditsNames"><a href = "https://www.urban.org/author/caroline-ratcliffe" target = "_blank">Caroline Ratcliffe</a>, <a href = "https://www.urban.org/author/cary-lou" target = "_blank">Cary Lou</a>, <a href = "https://www.urban.org/author/diana-elliott" target = "_blank">Diana Elliott</a>, and <a href = "https://www.urban.org/author/signe-mary-mckernan" target = "_blank">Signe-Mary McKernan</a></div>
+      <div class = "creditsNames"><a href = "https://www.urban.org/author/caroline-ratcliffe" target = "_blank">Lorem ipsum</a>, <a href = "https://www.urban.org/author/diana-elliott" target = "_blank">Lorem ipsum</a>, and <a href = "https://www.urban.org/author/signe-mary-mckernan" target = "_blank">Lorem ipsum</a></div>
 
       <div class = "creditsHeader">DESIGN</div>
-      <div class = "creditsNames">Christina Baird</div>
+      <div class = "creditsNames">Lorem ipsum</div>
 
       <div class = "creditsHeader">DEVELOPMENT</div>
-      <div class = "creditsNames">Ben Chartoff</div>
+      <div class = "creditsNames">Lorem ipsum</div>
 
       <div class = "creditsHeader">EDITING</div>
-      <div class = "creditsNames">Elizabeth Forney</div>
+      <div class = "creditsNames">Lorem ipsum</div>
 
       <div class = "creditsHeader">WRITING</div>
-      <div class = "creditsNames"><a href = "https://www.urban.org/author/caroline-ratcliffe" target = "_blank">Caroline Ratcliffe</a>, <a href = "https://www.urban.org/author/cary-lou" target = "_blank">Cary Lou</a>, <a href = "https://www.urban.org/author/diana-elliott" target = "_blank">Diana Elliott</a>, <a href = "https://www.urban.org/author/signe-mary-mckernan" target = "_blank">Signe-Mary McKernan</a>, and Serena Lei</div>
+      <div class = "creditsNames">Lorem ipsum</div>
 
       <div id = "copyright">Copyright &copy; November 2017. Urban Institute. <a href = "https://github.com/urbaninstitute/city-financial-health" target = "_blank">View this project on GitHub</a>.</div>
 
