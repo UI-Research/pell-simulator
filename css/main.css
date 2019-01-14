@@ -364,7 +364,11 @@ a.inverted:hover{
 }
 .avgContainer{
 	display: inline-block;
-	float: right;
+	float: left;
+    margin-left: 39px;
+}
+.avgSubcontainer .largeText{
+	margin-left: -23px;
 }
 .largeText{
     font-size: 36px;
@@ -531,6 +535,11 @@ input[type="radio"]:checked + label span.s2.radio::after {
 .tickLabel{
 	position: absolute;
 	width: 170px;
+}
+
+.barLabel{
+	font-size: 12px;
+	font-weight: bold;
 }
 
 /*********************************************************************************/
