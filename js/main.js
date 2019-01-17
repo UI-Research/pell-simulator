@@ -375,6 +375,7 @@ function showScenario(scenario){
 
 	d3.select(".scenarioTab." + scenario).classed("active", true)
 	d3.select(".scenarioTab." + other).classed("active", false)
+	d3.select("#scenarioTabs").attr("class", scenario)
 }
 
 function init(data){
