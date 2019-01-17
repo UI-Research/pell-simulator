@@ -1,6 +1,6 @@
 var S1_DEFAULTS = {"a": "7000"}
 var S2_DEFAULTS = {"a": "5000", "b": "0.5", "c": "1"}
-var CHART_LABELS = ["","First quartile, dependent","Second quartile, dependent","Third quartile, dependent","Fourth quartile, dependent","Independent students","High school diploma or less","Associate’s degree or some college","Bachelor’s degree","Master’s or higher","White students","Black or African American","Hispanic or Latino","Asian","Another race","Public 4-year","Private nonprofit 4-year","Public 2-year","Private for profit","Other","No benefits","Receiving some benefits"]
+var CHART_LABELS = ["","First quartile, dependent","Second quartile, dependent","Third quartile, dependent","Fourth quartile, dependent","Independent students","High school diploma or less","Associate&rsquo;s degree or some college","Bachelor&rsquo;s degree","Master&rsquo;s degree or higher","White","Black/African American","Hispanic/Latino","Asian","Another race","Public 4-year","Private nonprofit 4-year","Public 2-year","Private for profit","Other","No","Yes"]
 var BAR_HEIGHT = 50;
 
 var THOUSANDS = d3.format("$,.0f")
@@ -72,6 +72,10 @@ function buildChart(allData, category, scenario){
 		.filter(function(o){ return o.category == category })
 		.reverse()
 
+	if(category == "benefits"){
+		data = data.reverse()
+	}
+
 	data.forEach(function(d){
 		d["label"] = CHART_LABELS[+d.subcategory]
 	})
@@ -100,7 +104,7 @@ function buildChart(allData, category, scenario){
 		.enter().append("div")
 		.attr("class", "tickLabel chartLabel")
 		.style("top", function(d){ return (y(d.label) + BAR_HEIGHT * .5) + "px" })
-		.text(function(d){ return d.label })
+		.html(function(d){ return d.label })
 
 
 	g.selectAll(".baselineBar")
@@ -165,11 +169,12 @@ function updateCostData(scenario){
 
 	d3.select(".oneYear." + scenario + " .baselineText").text(function(){
 		var diff = val1 - baseline1
+		var sign = (diff < 0) ? "-" : "+"
 		if(diff > 0){
-			return BILLIONS(Math.abs(diff)) + " above current cost"
+			return sign + BILLIONS(Math.abs(diff)) + " from current policy"
 		}
 		else if(diff < 0){
-			return BILLIONS(Math.abs(diff)) + " below current cost"
+			return sign + BILLIONS(Math.abs(diff)) + " from current policy"
 		}
 		else{
 			return "Equal to current cost"
@@ -178,14 +183,15 @@ function updateCostData(scenario){
 
 	d3.select(".tenYear." + scenario + " .baselineText").text(function(){
 		var diff = val10 - baseline10
+		var sign = (diff < 0) ? "-" : "+"
 		if(diff > 0){
-			return BIG_BILLIONS(Math.abs(diff)) + " above current cost"
+			return sign + BIG_BILLIONS(Math.abs(diff)) + " from current policy"
 		}
 		else if(diff < 0){
-			return BIG_BILLIONS(Math.abs(diff)) + " below current cost"
+			return sign + BIG_BILLIONS(Math.abs(diff)) + " from current policy"
 		}
 		else{
-			return "Equal to current cost"
+			return "Equal to current policy"
 		}
 	})
 	
@@ -272,13 +278,72 @@ function updateCharts(scenario){
 
 }
 
+function getInputSelector(obj){
+	var a = (d3.select(obj).classed("a")) ? ".a" : ""
+	var b = (d3.select(obj).classed("b")) ? ".b" : ""
+	var c = (d3.select(obj).classed("c")) ? ".c" : ""
+	var s1 = (d3.select(obj).classed("s1")) ? ".s1" : ""
+	var s2 = (d3.select(obj).classed("s2")) ? ".s2" : ""
+
+	return "input" + a + b + c + s1 + s2
+}
+function getFormatter(obj){
+	var a = (d3.select(obj).classed("a")) ? ".a" : ""
+	var formatter = (a == ".a") ? THOUSANDS : PERCENT;
+	return formatter
+
+}
+
 function updateInputs(scenario){
-	if(scenario == "s1"){
-		d3.select(".sliderLabel.a.s1").text(THOUSANDS(d3.select("input.s1.a").node().value))
-	}else{
-		d3.select(".sliderLabel.a.s2").text(THOUSANDS(d3.select("input.s2.a").node().value))
-		d3.select(".sliderLabel.b.s2").text(PERCENT(d3.select("input.s2.b").node().value))
-		d3.select(".sliderLabel.c.s2").text(PERCENT(d3.select("input.s2.c").node().value))
+	d3.selectAll(".sliderMin").text(function(){
+		var formatter = getFormatter(this)	
+		return formatter(d3.select(getInputSelector(this)).attr("min"))
+	})
+
+	d3.selectAll(".sliderMax").text(function(){
+		var formatter = getFormatter(this)
+		return formatter(d3.select(getInputSelector(this)).attr("max"))
+	})
+
+	d3.selectAll(".sliderValue").text(function(){
+		var formatter = getFormatter(this)
+		return formatter(d3.select(getInputSelector(this)).node().value)
+	})
+	.style("left", function(){
+		var scootch = ((d3.select(d3.select(this).node().parentNode).select(".sliderValue").node().getBoundingClientRect().width) * .5),
+			val = d3.select(getInputSelector(this)).node().value,
+			min = d3.select(getInputSelector(this)).attr("min"),
+			max = d3.select(getInputSelector(this)).attr("max"),
+			width = d3.select(getInputSelector(this)).node().getBoundingClientRect().width - 14
+
+
+		// console.log(d3.select(d3.select(this).node().parentNode).select(".sliderValue"))
+		scootch -= 4;
+		if(d3.select(this).classed("a") == false){ scootch -= 8}
+
+		return (width * ((val - min)/ (max - min)) - scootch) + "px"
+
+	})
+
+
+	if(scenario == "s2"){
+		var phaseEndsVal = d3.select(".slider.c.s2").node().value
+		var phaseBegins = d3.select(".slider.b.s2")
+
+		var val = (phaseEndsVal - phaseBegins.attr("min") ) / (phaseBegins.attr('max') - phaseBegins.attr('min'))
+
+		if(val >= 1){
+			phaseBegins.attr("id","fullTrack")
+
+		}else{
+			//for phase out vals of:
+			//200 -> .8
+			//150 -> .6
+			//100 -> .4
+
+			phaseBegins.attr("id", String(val).replace("0.","pt"))
+		}
+
 	}
 }
 

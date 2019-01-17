@@ -99,48 +99,54 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <!-- TITLE BLOCK -->
     <div id = "titleContainer">
       <img src = "img/print-logo-full.png" id  = "home-print-logo"/>
-      <div id = "title">Pell Simulator</div>
-      <div id = "subtitle">A subtitle</div>
+      <div id = "title">Pell Grant Reform Simulator</div>
+      <div id = "datePublished">February XX, 2019</div>
 
-      <p class = "introText">orem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit. orem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit.</p>
-      <p class = "introText">orem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit. orem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit.</p>
+      <p class = "introText">Reauthorization of the Higher Education Act gives Congress the opportunity to strengthen and simplify the Pell Grant program. Pell grants make college more affordable for many families, but the maximum grant has not kept up with inflation or rising tuition costs.</p>
+      <p class = "introText">Through this tool, users can simulate the effects of changes to the Pell programs to see how program costs and grant amounts would change and which students would be affected.</p>
     </div>
     <!-- END TITLE BLOCK -->
 
     <img src = "img/homepage-print-fallback.png" id = "print-fallback"/>
     <div id = "controlsContainer">
       <div id = "scenarioTabs">
-        <div class = "scenarioTab s1 active">Scenario 1</div>
-        <div class = "scenarioTab s2">Scenario 2</div>
+        <div class = "scenarioTab s2">Two-Factor Formula</div>
+        <div class = "scenarioTab s1 active">Simple Reform Plan</div>
       </div>
 
     <!-- START S1 CONTAINER -->
       <div id = "s1Container" class = "scenarioContainer">
         <div class = "inputContainer s1">
-          <div class = "h1 colorText s1">Name of scenario 1</div>
-          <div class = "p1 s1">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit.</div>
+          <div class = "h1 colorText s1">Simple Reform Plan</div>
+          <div class = "p1 s1">Pell grants are calculated by subtracting the amount families can pay (known as the “estimated family contribution”) from the maximum grant amount, which is $6,095 for the 2018–19 school year. Changing the maximum grant amount will lead to a smaller or larger grant for recipients.</div>
 
           <div class = "legend s1"><span>O</span> Baseline value (current policy)</div>
 
-          <div class = "h2 colorText s1">Maximum pell grant</div>
-          <input class = "slider a s1" min = 4000 max = 10000 value = 6000 step = 250 type = "range">
-          <div class = "sliderLabel a s1 dollars"></div>
-          <div class = "p1 s1">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet.</div>
+          <div class = "h2 colorText s1">Maximum Pell grant</div>
 
-          <div class = "sidebar button print">View printable data</div>
+          <div class = "sliderContainer">
+            <div class = "sliderLabel sliderMin a s1 dollars"></div>
+            <input class = "slider a s1" min = 4000 max = 10000 value = 6000 step = 250 type = "range">
+            <div class = "sliderLabel sliderValue a s1 dollars"></div>
+            <div class = "sliderLabel sliderMax a s1 dollars"></div>
+          </div>
+
+          <div class = "p1 s1">Change the maximum Pell grant amount</div>
+
+          <div class = "sidebar button print">Print data</div>
         </div>
 
         <div class = "chartContainer s1">
           <div class = "costContainer s1">
             <div class = "oneYear costSubcontainer s1">
               <div class = "largeText colorText s1 costVal"></div>
-              <div class = "chartHeader s1">annual program cost</div>
+              <div class = "chartHeader s1">Annual program cost</div>
               <div class = "baselineText"></div>
             </div>
 
             <div class = "tenYear costSubcontainer s1">
               <div class = "medText colorText s1 costVal"></div>
-              <div class = "chartLabel s1">10 year program cost</div>
+              <div class = "chartLabel s1">Program cost over 10 years</div>
               <div class = "baselineText"></div>
             </div>
           </div>
@@ -151,7 +157,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <div class = "radioContainer s1 percent">
                 <div class = "radioRow percent">
                   <input type = "radio" class = "percent radioInput s1" id = "percent-s1" name="s1" checked="checked">
-                  <label for="percent-s1"><span class="radio chartHeader s1">Percent receiving pell</span></label>
+                  <label for="percent-s1"><span class="radio chartHeader s1">Percent receiving Pell</span></label>
                 </div>
                 <div class = "radioRow dollars">
                   <input type = "radio" class = "dollars radioInput s1" id = "dollars-s1" name="s1">
@@ -184,7 +190,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </div>
 
             <div class = "barContainer benefits s1">
-              <div class = "chartHeader">Receiving federal benefits</div>
+              <div class = "chartHeader">FEDERAL BENEFIT RECEIPT</div>
               <div class = "chart"></div>
             </div>
             <div class = "barContainer blank s1">
@@ -199,42 +205,59 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <!-- START S2 CONTAINER -->
       <div id = "s2Container" class = "scenarioContainer hidden">
         <div class = "inputContainer s2">
-          <div class = "h1 colorText s2">Name of scenario 2</div>
-          <div class = "p1 s2">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit.</div>
+          <div class = "h1 colorText s2">Two-Factor Formula</div>
+          <div class = "p1 s2">Pell grants are calculated by subtracting the amount families can pay (known as the “estimated family contribution”) from the maximum grant amount, which is $6,095 for the 2018–19 school year. Under this plan, users can adjust the maximum grant amount and set phase-out limits to ensure that aid is directed to families most in need.</div>
 
           <div class = "legend s2"><span>O</span> Baseline value (current policy)</div>
 
-          <div class = "h2 colorText s2">Maximum pell grant</div>
-          <input class = "slider a s2" min = 4000 max = 10000 value = 6000 step = 1000 type = "range">
-          <div class = "sliderLabel a s2 dollars"></div>
-          <div class = "p1 s2">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet.</div>
+          <div class = "h2 colorText s2">Maximum Pell grant</div>
 
-          <div class = "h2 colorText s2">Phase out begins</div>
-          <input class = "slider b s2" min = 0 max = 2.5 value = 1 step = .5 type = "range">
-          <div class = "sliderLabel b s2 percent"></div>
-          <div class = "p1 s2">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet.</div>
+          <div class = "sliderContainer">
+            <div class = "sliderLabel sliderMin a s2 dollars"></div>
+            <input class = "slider a s2" min = 4000 max = 10000 value = 6000 step = 1000 type = "range">
+            <div class = "sliderLabel sliderValue a s2 dollars"></div>
+            <div class = "sliderLabel sliderMax a s2 dollars"></div>
+          </div>
+          <div class = "p1 s2">Change the maximum Pell grant amount</div>
 
-          <div class = "h2 colorText s2">Phase out ends</div>
-          <input class = "slider c s2" min = 1 max = 3.5 value = 2 step = .5 type = "range">
-          <div class = "sliderLabel c s2 percent"></div>
-          <div class = "p1 s2">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet.</div>
+          <div class = "h2 colorText s2">Phase-out begins</div>
+
+          <div class = "sliderContainer">
+            <div class = "sliderLabel sliderMin b s2 percent"></div>
+            <input class = "slider b s2" min = 0 max = 2.5 value = 1 step = .5 type = "range">
+            <div class = "sliderLabel sliderValue b s2 percent"></div>
+            <div class = "sliderLabel sliderMax b s2 percent"></div>
+          </div>
+
+          <div class = "p1 s2">Choose the income level (as a percent of the federal poverty level) when grants start phasing out</div>
+
+          <div class = "h2 colorText s2">Phase-out ends</div>
+
+          <div class = "sliderContainer">
+            <div class = "sliderLabel sliderMin c s2 percent"></div>
+            <input class = "slider c s2" min = 1 max = 3.5 value = 2 step = .5 type = "range">
+            <div class = "sliderLabel sliderValue c s2 percent"></div>
+            <div class = "sliderLabel sliderMax c s2 percent"></div>
+          </div>
+
+          <div class = "p1 s2">Choose the income level (as a percent of the federal poverty level) at which students are no longer eligible for aid</div>
 
 
 
-          <div class = "sidebar button print">View printable data</div>
+          <div class = "sidebar button print">Print data</div>
         </div>
 
         <div class = "chartContainer s2">
           <div class = "costContainer s2">
             <div class = "oneYear costSubcontainer s2">
               <div class = "largeText colorText s2 costVal"></div>
-              <div class = "chartHeader s2">annual program cost</div>
+              <div class = "chartHeader s2">Annual program cost</div>
               <div class = "baselineText"></div>
             </div>
 
             <div class = "tenYear costSubcontainer s2">
               <div class = "medText colorText s2 costVal"></div>
-              <div class = "chartLabel s2">10 year program cost</div>
+              <div class = "chartLabel s2">Program cost over 10 years</div>
               <div class = "baselineText"></div>
             </div>
           </div>
@@ -245,7 +268,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <div class = "radioContainer s2 percent">
                 <div class = "radioRow percent">
                   <input type = "radio" class = "percent radioInput s2" id = "percent-s2" name="s2" checked="checked">
-                  <label for="percent-s2"><span class="radio chartHeader s2">Percent receiving pell</span></label>
+                  <label for="percent-s2"><span class="radio chartHeader s2">Percent receiving Pell</span></label>
                 </div>
                 <div class = "radioRow dollars">
                   <input type = "radio" class = "dollars radioInput s2" id = "dollars-s2" name="s2">
@@ -278,7 +301,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </div>
 
             <div class = "barContainer benefits s2">
-              <div class = "chartHeader">Receiving federal benefits</div>
+              <div class = "chartHeader">FEDERAL BENEFIT RECEIPT</div>
               <div class = "chart"></div>
             </div>
             <div class = "barContainer blank s2">
@@ -301,39 +324,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id = "footerContainer">
     <div id = "footerContent">
       <div class = "footerHeader" id = "topFooterHeader">About the data</div>
-      <p class = "footerAbout">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit.</p>
+      <p class = "footerAbout">[add stuff about data? Or just rely on the appendix?]</p>
+<div class = "button">Print data</div>
 
       <div class = "footerHeader">PROJECT CREDITS</div>
-      <p class = "footerCredits">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit.</p>
+      <p class = "footerCredits">This feature was funded by the Bill & Melinda Gates Foundation. We are grateful to them and to all our funders, who make it possible for Urban to advance its mission. The views expressed are those of the authors and should not be attributed to the Urban Institute, its trustees, or its funders. Funders do not determine research findings or the insights and recommendations of our experts. More information on our funding principles is available here. Read our terms of service here.</p>
 
-      <div class = "footerSpecialCredit">
-        <div>Heidi Goldberg, <a href = "http://www.nlc.org/" target = "_blank">National League of Cities</a></div>
-        <div>Tamara Lindsay, <a href = "http://cfefund.org/" target = "_blank">Cities for Financial Empowerment Fund</a></div>
-        <div>Solana Rice, <a href = "https://prosperitynow.org/" target = "_blank">Prosperity Now</a></div>
-        <div>Anne Romatowski, <a href = "https://www.jpmorganchase.com/corporate/Corporate-Responsibility/global-philanthropy.htm" target = "_blank">JPMorgan Chase</a></div>
-        <div>Sarah Treuhaft, <a href = "http://www.policylink.org/" target = "_blank">PolicyLink</a></div>
-      </div>
-
-      <p class = "footerCredits">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit.</p>
-
-      <p class = "footerCredits" id = "bottomFooterCredits">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis id neque ut laoreet. Etiam leo felis, pulvinar eu nibh id, aliquam mattis erat. Integer nisi mi, gravida et nisl et, euismod cursus velit.</p>
 
       <div class = "creditsHeader">RESEARCH</div>
-      <div class = "creditsNames"><a href = "https://www.urban.org/author/caroline-ratcliffe" target = "_blank">Lorem ipsum</a>, <a href = "https://www.urban.org/author/diana-elliott" target = "_blank">Lorem ipsum</a>, and <a href = "https://www.urban.org/author/signe-mary-mckernan" target = "_blank">Lorem ipsum</a></div>
+      <div class = "creditsNames">Matthew Chingos and Victoria Rosenboom</div>
 
       <div class = "creditsHeader">DESIGN</div>
-      <div class = "creditsNames">Lorem ipsum</div>
+      <div class = "creditsNames">Allison Feldman</div>
 
       <div class = "creditsHeader">DEVELOPMENT</div>
-      <div class = "creditsNames">Lorem ipsum</div>
+      <div class = "creditsNames">Ben Chartoff</div>
 
       <div class = "creditsHeader">EDITING</div>
-      <div class = "creditsNames">Lorem ipsum</div>
+      <div class = "creditsNames">David Hinson</div>
 
       <div class = "creditsHeader">WRITING</div>
-      <div class = "creditsNames">Lorem ipsum</div>
+      <div class = "creditsNames">Serena Lei</div>
 
-      <div id = "copyright">Copyright &copy; November 2017. Urban Institute. <a href = "https://github.com/urbaninstitute/city-financial-health" target = "_blank">View this project on GitHub</a>.</div>
+      <div id = "copyright"><a href = "https://github.com/urbaninstitute/city-financial-health" target = "_blank">View this project on GitHub</a>.</div>
 
     </div>
   </div>
