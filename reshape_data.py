@@ -9,9 +9,9 @@ h = {}
 for i,s in enumerate(head):
 	h[s] = i
 
-cats = {"cost":[], "none":[""],"income": ["1", "2", "3", "4", "5"], "parentsEd" : ["6", "7", "8", "9"], "race": ["10","11","12","13","14"], "instType": ["15","16","17","18","19"], "benefits": ["20","21"]}
+cats = {"cost":[], "none":[""],"income": ["1", "2", "3", "4", "5"], "parentsEd" : ["6", "7", "8", "9"], "race": ["10","11","12","13","14"], "instType": ["15","16","17","18"], "benefits": ["20","21"], "indep": ["22","23"]}
 
-rows = [["num", "cost", "1yr"], ["num", "cost", "10yr"], ["num","avg",""],["bar","income","1"],["bar","income","2"],["bar","income","3"],["bar","income","4"],["bar","income","5"],["bar","parentsEd","6"],["bar","parentsEd","7"],["bar","parentsEd","8"],["bar","parentsEd","9"],["bar","race","10"],["bar","race","11"],["bar","race","12"],["bar","race","13"],["bar","race","14"],["bar","instType","15"],["bar","instType","16"],["bar","instType","17"],["bar","instType","18"],["bar","instType","19"],["bar","benefits","20"],["bar","benefits","21"]]
+rows = [["num", "cost", "1yr"], ["num", "cost", "10yr"], ["num","avg",""],["bar","income","1"],["bar","income","2"],["bar","income","3"],["bar","income","4"],["bar","income","5"],["bar","parentsEd","6"],["bar","parentsEd","7"],["bar","parentsEd","8"],["bar","parentsEd","9"],["bar","race","10"],["bar","race","11"],["bar","race","12"],["bar","race","13"],["bar","race","14"],["bar","instType","15"],["bar","instType","16"],["bar","instType","17"],["bar","instType","18"],["bar","benefits","20"],["bar","benefits","21"],["bar","indep","22"],["bar","indep","23"]]
 
 reshaped = {}
 rHead = ["type","category","subcategory"]

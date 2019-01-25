@@ -1,6 +1,6 @@
 var S1_DEFAULTS = {"a": "7000"}
 var S2_DEFAULTS = {"a": "5000", "b": "0.5", "c": "1"}
-var CHART_LABELS = ["","First quartile, dependent","Second quartile, dependent","Third quartile, dependent","Fourth quartile, dependent","Independent students","High school diploma or less","Associate&rsquo;s degree or some college","Bachelor&rsquo;s degree","Master&rsquo;s degree or higher","White","Black/African American","Hispanic/Latino","Asian","Another race","Public 4-year","Private nonprofit 4-year","Public 2-year","Private for profit","Other","No","Yes"]
+var CHART_LABELS = ["","First quartile, dependent","Second quartile, dependent","Third quartile, dependent","Fourth quartile, dependent","Independent students","High school diploma or less","Associate&rsquo;s degree or some college","Bachelor&rsquo;s degree","Master&rsquo;s degree or higher","White","Black/African American","Hispanic/Latino","Asian","Another race","Public 4-year","Private nonprofit 4-year","Public 2-year","Private for profit","Other","No","Yes","Without children","With children"]
 var BAR_HEIGHT = 50;
 
 var THOUSANDS = d3.format("$,.0f")
@@ -16,6 +16,36 @@ var BIG_BILLIONS = function(val){
 	var b = d3.format("$.4s")(val)
 	return(b.replace(/G/," billion").replace(/M/, " million").replace(/k/, " thousand"))
 }
+
+var PRINT = false;
+
+function IS_1200(){
+  if(PRINT){ return false }
+  else { return d3.select("#breakpoint1200").style("display") == "block"; }
+}
+function IS_1000(){
+  if(PRINT){ return false }
+  else { return d3.select("#breakpoint1000").style("display") == "block"; }
+}
+function IS_MOBILE(){
+  if(PRINT){ return false }
+  else { return d3.select("#isMobile").style("display") == "block"; }
+}
+function IS_PHONE(){
+  if(PRINT){ return false }
+  else { return d3.select("#isPhone").style("display") == "block"; }
+}
+function IS_SMALL_PHONE(){
+  if(PRINT){ return false }
+  else { return d3.select("#isSmallPhone").style("display") == "block"; }
+}
+function IS_VERY_SMALL_PHONE(){
+  if(PRINT){ return false }
+  else { return d3.select("#isVerySmallPhone").style("display") == "block"; }
+}
+
+
+
 
 var BASELINE_KEY_PERCENT = "s1_4000_percent_baseline"
 var BASELINE_KEY_DOLLARS = "s1_4000_dollars_baseline"
@@ -50,7 +80,11 @@ function getInputs(scenario){
 }
 
 function toKeyString(s){
-	return s;
+	if (+s < 10){
+		return d3.format(".1f")(s)
+	}else{
+		return s;
+	}
 }
 
 function getKey(scenario){
@@ -64,6 +98,17 @@ function getKey(scenario){
 	}
 }
 
+function getChartWidth(){
+	if(IS_1000()){
+		return 350;
+	}
+	else if(IS_1200()){
+		return 650;
+	}
+	else{
+		return 400
+	}
+}
 
 function buildChart(allData, category, scenario){
 	var chartContainer = d3.select(".barContainer." + category + "." + scenario + " .chart")
@@ -72,7 +117,7 @@ function buildChart(allData, category, scenario){
 		.filter(function(o){ return o.category == category })
 		.reverse()
 
-	if(category == "benefits"){
+	if(category == "benefits" || category == "indep"){
 		data = data.reverse()
 	}
 
@@ -80,11 +125,13 @@ function buildChart(allData, category, scenario){
 		d["label"] = CHART_LABELS[+d.subcategory]
 	})
 
-	var w = 400,
-		h = data.length * (BAR_HEIGHT + 10) + 40;
+ 	var w = getChartWidth();
+
+	var h = data.length * (BAR_HEIGHT + 10) + 40;
 	var svg = chartContainer.append("svg").attr("width", w).attr("height",h)
 
-    var margin = {top: 20, right: 120, bottom: 30, left: 170},
+
+    var margin = {top: 20, right: 120, bottom: 30, left: 155},
     width = w - margin.left - margin.right,
     height = h - margin.top - margin.bottom;
   
@@ -237,9 +284,9 @@ function updateCharts(scenario){
 	var baseline_key = (unit == "percent") ? BASELINE_KEY_PERCENT : BASELINE_KEY_DOLLARS;
 	var key = getKey(scenario);
 
-	var w = 300
+	var w = getChartWidth();
 
-    var margin = {top: 20, right: 20, bottom: 30, left: 180},
+    var margin = {top: 20, right: 120, bottom: 30, left: 155},
     width = w - margin.left - margin.right
 
 
@@ -341,7 +388,7 @@ function updateInputs(scenario){
 			//150 -> .6
 			//100 -> .4
 
-			phaseBegins.attr("id", String(val).replace("0.","pt"))
+			phaseBegins.attr("id", d3.format(".2f")(val).replace("0.","pt"))
 		}
 
 	}
@@ -384,12 +431,14 @@ function init(data){
 	buildChart(data, "race", "s1")
 	buildChart(data, "instType", "s1")
 	buildChart(data, "benefits", "s1")
+	buildChart(data, "indep", "s1")
 
 	buildChart(data, "income", "s2")
 	buildChart(data, "parentsEd", "s2")
 	buildChart(data, "race", "s2")
 	buildChart(data, "instType", "s2")
 	buildChart(data, "benefits", "s2")
+	buildChart(data, "indep", "s2")
 
 	buildCostData(data, "s1")
 	buildCostData(data, "s2")
@@ -436,4 +485,8 @@ d3.selectAll(".radioInput.s2").on("input", function(){
 
 d3.csv("data/data.csv", function(data){
 	init(data)
+})
+
+$(window).resize(function(){
+	updateCharts(getScenario())
 })

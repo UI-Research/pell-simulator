@@ -102,31 +102,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div id = "title">Pell Grant Reform Simulator</div>
       <div id = "datePublished">February XX, 2019</div>
 
-      <p class = "introText">Reauthorization of the Higher Education Act gives Congress the opportunity to strengthen and simplify the Pell Grant program. Pell grants make college more affordable for many families, but the maximum grant has not kept up with inflation or rising tuition costs.</p>
-      <p class = "introText">Through this tool, users can simulate the effects of changes to the Pell programs to see how program costs and grant amounts would change and which students would be affected.</p>
+      <p class = "introText">Reauthorization of the Higher Education Act gives Congress the opportunity to modernize the Pell Grant program, which makes college more affordable for low-income students.</p>
+      <p class = "introText">Through this tool, users can simulate the effects of modifications to the Pell program to see how program costs and grant amounts would change and which students would be affected. Users can either change the generosity of the program within the current formula, or experiment with a simplified system.</p>
     </div>
     <!-- END TITLE BLOCK -->
 
     <img src = "img/homepage-print-fallback.png" id = "print-fallback"/>
     <div id = "controlsContainer">
       <div id = "scenarioTabs" class = "s1">
-        <div class = "scenarioTab s2">Two-Factor Formula</div>
-        <div class = "scenarioTab s1 active">Simple Reform Plan</div>
+        <div class = "scenarioTab s2">Simplified Formula</div>
+        <div class = "scenarioTab s1 active">Change Maximum Pell</div>
       </div>
 
     <!-- START S1 CONTAINER -->
       <div id = "s1Container" class = "scenarioContainer">
         <div class = "inputContainer s1">
-          <div class = "h1 colorText s1">Simple Reform Plan</div>
-          <div class = "p1 s1">Pell grants are calculated by subtracting the amount families can pay (known as the “estimated family contribution”) from the maximum grant amount, which is $6,095 for the 2018–19 school year. Changing the maximum grant amount will lead to a smaller or larger grant for recipients.</div>
+          <div class = "h1 colorText s1">Change Maximum Pell</div>
+          <div class = "p1 s1">Pell grants are currently calculated by subtracting an estimate of what families can pay, known as the “expected family contribution,” from the maximum grant amount, which is either $6,095 or up to the cost of attendance at the student’s school. Use the slider below to change the maximum Pell grant amount within the current formula.</div>
 
-          <div class = "legend s1"><span>O</span> Baseline value (current policy)</div>
+          <div class = "legend s1"><span><img src = "img/baseline.png"/></span>Current distribution</div>
 
           <div class = "h2 colorText s1">Maximum Pell grant</div>
 
           <div class = "sliderContainer">
             <div class = "sliderLabel sliderMin a s1 dollars"></div>
-            <input class = "slider a s1" min = 4000 max = 10000 value = 6000 step = 250 type = "range">
+            <input class = "slider a s1" min = 4000 max = 10000 value = 6100 step = 100 type = "range">
             <div class = "sliderLabel sliderValue a s1 dollars"></div>
             <div class = "sliderLabel sliderMax a s1 dollars"></div>
           </div>
@@ -153,7 +153,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
           <div class = "avgContainer s1">
             <div class = "avgSubcontainer s1">
-              <div class = "largeText colorText s1"><span class = "s1 avg">46%</span></div>
+              <div class = "largeText colorText s1"><span class = "s1 avg"></span></div>
               <div class = "radioContainer s1 percent">
                 <div class = "radioRow percent">
                   <input type = "radio" class = "percent radioInput s1" id = "percent-s1" name="s1" checked="checked">
@@ -193,6 +193,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <div class = "chartHeader">FEDERAL BENEFIT RECEIPT</div>
               <div class = "chart"></div>
             </div>
+
+            <div class = "barContainer indep s1">
+              <div class = "chartHeader">PARENTAL STATUS OF INDEPENDENT STUDENTS</div>
+              <div class = "chart"></div>
+            </div>
+
+
             <div class = "barContainer blank s1">
               <div class = "chart"></div>
             </div>
@@ -205,16 +212,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <!-- START S2 CONTAINER -->
       <div id = "s2Container" class = "scenarioContainer hidden">
         <div class = "inputContainer s2">
-          <div class = "h1 colorText s2">Two-Factor Formula</div>
-          <div class = "p1 s2">Pell grants are calculated by subtracting the amount families can pay (known as the “estimated family contribution”) from the maximum grant amount, which is $6,095 for the 2018–19 school year. Under this plan, users can adjust the maximum grant amount and set phase-out limits to ensure that aid is directed to families most in need.</div>
+          <div class = "h1 colorText s2">Simplified Formula</div>
+          <div class = "p1 top s2">Pell grants are currently calculated by subtracting an estimate of what families can pay, known as the “expected family contribution,” (EFC) from the maximum grant amount, which is $6,095 for the 2018–19 school year or up to the cost of attendance at the student’s school.</div>
+          <div class = "p1 s2">Some experts and policymakers have proposed moving to a simplified calculation of Pell grants to reduce the burden of applying for aid and to make aid amounts more transparent and predictable. Here, we model a “two-factor” formula, where Pell grants are calculated based on income relative to the federal poverty level (which accounts for family size). To make this formula more or less generous, users can adjust the maximum grant size as well as the income level at which students begin receiving less than the maximum amount.</div>
 
-          <div class = "legend s2"><span>O</span> Baseline value (current policy)</div>
+          <div class = "legend s2"><span><img src = "img/baseline.png"/></span>Current distribution</div>
 
           <div class = "h2 colorText s2">Maximum Pell grant</div>
 
           <div class = "sliderContainer">
             <div class = "sliderLabel sliderMin a s2 dollars"></div>
-            <input class = "slider a s2" min = 4000 max = 10000 value = 6000 step = 1000 type = "range">
+            <input class = "slider a s2" min = 4000 max = 10000 value = 6000 step = 100 type = "range">
             <div class = "sliderLabel sliderValue a s2 dollars"></div>
             <div class = "sliderLabel sliderMax a s2 dollars"></div>
           </div>
@@ -224,23 +232,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
           <div class = "sliderContainer">
             <div class = "sliderLabel sliderMin b s2 percent"></div>
-            <input class = "slider b s2" min = 0 max = 2.5 value = 1 step = .5 type = "range">
+            <input class = "slider b s2" min = 0 max = 2.5 value = 1 step = .1 type = "range">
             <div class = "sliderLabel sliderValue b s2 percent"></div>
             <div class = "sliderLabel sliderMax b s2 percent"></div>
           </div>
 
-          <div class = "p1 s2">Choose the income level (as a percent of the federal poverty level) when grants start phasing out</div>
+          <div class = "p1 s2">Choose the income level (as a percent of the federal poverty level) when Pell grants start phasing out</div>
 
           <div class = "h2 colorText s2">Phase-out ends</div>
 
           <div class = "sliderContainer">
             <div class = "sliderLabel sliderMin c s2 percent"></div>
-            <input class = "slider c s2" min = 1 max = 3.5 value = 2 step = .5 type = "range">
+            <input class = "slider c s2" min = 1 max = 3.5 value = 2 step = .1 type = "range">
             <div class = "sliderLabel sliderValue c s2 percent"></div>
             <div class = "sliderLabel sliderMax c s2 percent"></div>
           </div>
 
-          <div class = "p1 s2">Choose the income level (as a percent of the federal poverty level) at which students are no longer eligible for aid</div>
+          <div class = "p1 s2">Choose the income level (as a percent of the federal poverty level) at which students are no longer eligible for Pell grants</div>
 
 
 
@@ -264,7 +272,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
           <div class = "avgContainer s2">
             <div class = "avgSubcontainer s2">
-              <div class = "largeText colorText s2"><span class = "s2 avg">46%</span></div>
+              <div class = "largeText colorText s2"><span class = "s2 avg"></span></div>
               <div class = "radioContainer s2 percent">
                 <div class = "radioRow percent">
                   <input type = "radio" class = "percent radioInput s2" id = "percent-s2" name="s2" checked="checked">
@@ -304,6 +312,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <div class = "chartHeader">FEDERAL BENEFIT RECEIPT</div>
               <div class = "chart"></div>
             </div>
+
+            <div class = "barContainer indep s2">
+              <div class = "chartHeader">PARENTAL STATUS OF INDEPENDENT STUDENTS</div>
+              <div class = "chart"></div>
+            </div>
+
             <div class = "barContainer blank s2">
               <div class = "chart"></div>
             </div>
@@ -324,8 +338,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id = "footerContainer">
     <div id = "footerContent">
       <div class = "footerHeader" id = "topFooterHeader">About the data</div>
-      <p class = "footerAbout">[add stuff about data? Or just rely on the appendix?]</p>
-<div class = "button">Print data</div>
+      <p class = "footerAbout">This simulator tool is based on analyses of the 2015-16 National Postsecondary Student Aid Survey (NPSAS), a nationally representative dataset collected by the US Department of Education. We then simulated 2018-19 Pell awards as our baseline as a better point of comparison for changes to current policy.</p>
+      <p class = "footerAbout">Federal benefit receipt is based on participation in the National School Lunch Program; Special Supplemental Nutrition Program for Women, Infants, and Children; the Supplemental Nutrition Assistance Program; Supplemental Security Income; and/or Temporary Assistance for Needy Families.</p>
+      <p class = "footerAbout">More details on the data and methodology can be found in the technical appendix.</p>
+
+<div class = "button">Download data</div>
+<div class = "button">Technical appendix</div>
 
       <div class = "footerHeader">PROJECT CREDITS</div>
       <p class = "footerCredits">This feature was funded by the Bill & Melinda Gates Foundation. We are grateful to them and to all our funders, who make it possible for Urban to advance its mission. The views expressed are those of the authors and should not be attributed to the Urban Institute, its trustees, or its funders. Funders do not determine research findings or the insights and recommendations of our experts. More information on our funding principles is available here. Read our terms of service here.</p>
