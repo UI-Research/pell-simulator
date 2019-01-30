@@ -206,8 +206,6 @@ a.inverted:hover{
 /*********************************************************************************/
 #titleContainer{
 	width: 100%;
-	border-bottom: 1px solid #9D9D9D;
-    padding-bottom: 70px;
 }
 #title, #subtitle{
 	display: block;
@@ -216,7 +214,7 @@ a.inverted:hover{
 	text-align: center;
 }
 #title{
-	margin-top: 220px;
+	margin-top: 150px;
 	font-weight: bold;
 }
 #subtitle{
@@ -342,6 +340,35 @@ a.inverted:hover{
 }
 
 /*********************************************************************************/
+/****************************       LOADING      *********************************/
+/*********************************************************************************/
+#loadingContainer{
+    position: absolute;
+    width: calc(100% + 100px);
+    background: rgba(255,255,255,.95);
+    height: 100%;
+    z-index: 10;
+    left: -50px;
+}
+#loadingGif img{
+    margin: 0 auto;
+    display: block;
+    margin-top: 60px;
+}
+#loadingText{
+    font-size: 20px;
+    margin: 0 auto;
+    margin-top: 30px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    font-style: italic;
+    color: #adabac;
+}
+
+
+
+/*********************************************************************************/
 /*******************************      INPUTS      ********************************/
 /*********************************************************************************/
 
@@ -411,7 +438,7 @@ a.inverted:hover{
 	color: #408941;
 }
 .sliderMin, .sliderMax{
-    color: #C4C4C4;
+    color: #adabac;
     font-size: 14px;
     display: block;
     position: absolute;
@@ -428,17 +455,36 @@ a.inverted:hover{
 	left: 236px
 }
 .sidebar.button{
-    background: #169dd2;
-    color: white;
     text-transform: uppercase;
     width: 198px;
     text-align: center;
     font-size: 18px;
     font-weight: bold;
     padding: 15px;
-    margin-top: 15px;
+    margin-top: 35px;
+    cursor: pointer;
+
+}
+.inputContainer.s1 .sidebar.button{
+    color: #169dd2;
+    background: white;
+    border: 2px solid #1696d2;
+}
+.inputContainer.s1 .sidebar.button:hover{
+    background: #169dd2;
+    color: white;
 }
 
+.inputContainer.s2 .sidebar.button{
+    color: #408941;
+    background: white;
+    border: 2px solid #408941;
+}
+.inputContainer.s2 .sidebar.button:hover{
+    background: #408941;
+    color: white;
+
+}
 .chartContainer{
 	display: inline-block;
 	float: left;
@@ -481,8 +527,13 @@ a.inverted:hover{
 }
 .baselineText{
 	font-size: 18px;
-    color: #C4C4C4;
+    color: #adabac;
     margin-top: 5px;
+}
+.costSubcontainer .chartLabel{
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 300;
 }
 .chartLabel{
     font-size: 16px;
@@ -689,361 +740,361 @@ input[type=range].s2:focus::-ms-fill-upper {
 
 
 input[type=range]#pt40::-webkit-slider-runnable-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.40, #408941), color-stop(0.40, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.40, #408941), color-stop(0.40, #adabac));
 }
 input[type=range]#pt40:focus::-webkit-slider-runnable-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.40, #408941), color-stop(0.40, #C4C4C4));;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.40, #408941), color-stop(0.40, #adabac));;
 }
 input[type=range]#pt40::-moz-range-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.40, #408941), color-stop(0.40, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.40, #408941), color-stop(0.40, #adabac));
 }
 input[type=range]#pt40::-ms-fill-lower {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.40, #408941), color-stop(0.40, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.40, #408941), color-stop(0.40, #adabac));
 }
 input[type=range]#pt40::-ms-fill-upper {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.40, #408941), color-stop(0.40, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.40, #408941), color-stop(0.40, #adabac));
 }
 input[type=range]#pt40:focus::-ms-fill-lower {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.40, #408941), color-stop(0.40, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.40, #408941), color-stop(0.40, #adabac));
 }
 input[type=range]#pt40:focus::-ms-fill-upper {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.40, #408941), color-stop(0.40, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.40, #408941), color-stop(0.40, #adabac));
 }
 
 
 
 input[type=range]#pt44::-webkit-slider-runnable-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.44, #408941), color-stop(0.44, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.44, #408941), color-stop(0.44, #adabac));
 }
 input[type=range]#pt44:focus::-webkit-slider-runnable-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.44, #408941), color-stop(0.44, #C4C4C4));;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.44, #408941), color-stop(0.44, #adabac));;
 }
 input[type=range]#pt44::-moz-range-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.44, #408941), color-stop(0.44, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.44, #408941), color-stop(0.44, #adabac));
 }
 input[type=range]#pt44::-ms-fill-lower {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.44, #408941), color-stop(0.44, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.44, #408941), color-stop(0.44, #adabac));
 }
 input[type=range]#pt44::-ms-fill-upper {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.44, #408941), color-stop(0.44, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.44, #408941), color-stop(0.44, #adabac));
 }
 input[type=range]#pt44:focus::-ms-fill-lower {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.44, #408941), color-stop(0.44, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.44, #408941), color-stop(0.44, #adabac));
 }
 input[type=range]#pt44:focus::-ms-fill-upper {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.44, #408941), color-stop(0.44, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.44, #408941), color-stop(0.44, #adabac));
 }
 
 
 
 input[type=range]#pt48::-webkit-slider-runnable-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.48, #408941), color-stop(0.48, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.48, #408941), color-stop(0.48, #adabac));
 }
 input[type=range]#pt48:focus::-webkit-slider-runnable-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.48, #408941), color-stop(0.48, #C4C4C4));;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.48, #408941), color-stop(0.48, #adabac));;
 }
 input[type=range]#pt48::-moz-range-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.48, #408941), color-stop(0.48, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.48, #408941), color-stop(0.48, #adabac));
 }
 input[type=range]#pt48::-ms-fill-lower {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.48, #408941), color-stop(0.48, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.48, #408941), color-stop(0.48, #adabac));
 }
 input[type=range]#pt48::-ms-fill-upper {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.48, #408941), color-stop(0.48, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.48, #408941), color-stop(0.48, #adabac));
 }
 input[type=range]#pt48:focus::-ms-fill-lower {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.48, #408941), color-stop(0.48, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.48, #408941), color-stop(0.48, #adabac));
 }
 input[type=range]#pt48:focus::-ms-fill-upper {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.48, #408941), color-stop(0.48, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.48, #408941), color-stop(0.48, #adabac));
 }
 
 
 
 input[type=range]#pt52::-webkit-slider-runnable-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.52, #408941), color-stop(0.52, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.52, #408941), color-stop(0.52, #adabac));
 }
 input[type=range]#pt52:focus::-webkit-slider-runnable-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.52, #408941), color-stop(0.52, #C4C4C4));;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.52, #408941), color-stop(0.52, #adabac));;
 }
 input[type=range]#pt52::-moz-range-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.52, #408941), color-stop(0.52, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.52, #408941), color-stop(0.52, #adabac));
 }
 input[type=range]#pt52::-ms-fill-lower {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.52, #408941), color-stop(0.52, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.52, #408941), color-stop(0.52, #adabac));
 }
 input[type=range]#pt52::-ms-fill-upper {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.52, #408941), color-stop(0.52, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.52, #408941), color-stop(0.52, #adabac));
 }
 input[type=range]#pt52:focus::-ms-fill-lower {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.52, #408941), color-stop(0.52, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.52, #408941), color-stop(0.52, #adabac));
 }
 input[type=range]#pt52:focus::-ms-fill-upper {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.52, #408941), color-stop(0.52, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.52, #408941), color-stop(0.52, #adabac));
 }
 
 
 
 input[type=range]#pt56::-webkit-slider-runnable-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.56, #408941), color-stop(0.56, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.56, #408941), color-stop(0.56, #adabac));
 }
 input[type=range]#pt56:focus::-webkit-slider-runnable-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.56, #408941), color-stop(0.56, #C4C4C4));;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.56, #408941), color-stop(0.56, #adabac));;
 }
 input[type=range]#pt56::-moz-range-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.56, #408941), color-stop(0.56, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.56, #408941), color-stop(0.56, #adabac));
 }
 input[type=range]#pt56::-ms-fill-lower {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.56, #408941), color-stop(0.56, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.56, #408941), color-stop(0.56, #adabac));
 }
 input[type=range]#pt56::-ms-fill-upper {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.56, #408941), color-stop(0.56, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.56, #408941), color-stop(0.56, #adabac));
 }
 input[type=range]#pt56:focus::-ms-fill-lower {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.56, #408941), color-stop(0.56, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.56, #408941), color-stop(0.56, #adabac));
 }
 input[type=range]#pt56:focus::-ms-fill-upper {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.56, #408941), color-stop(0.56, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.56, #408941), color-stop(0.56, #adabac));
 }
 
 
 
 input[type=range]#pt60::-webkit-slider-runnable-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.60, #408941), color-stop(0.60, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.60, #408941), color-stop(0.60, #adabac));
 }
 input[type=range]#pt60:focus::-webkit-slider-runnable-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.60, #408941), color-stop(0.60, #C4C4C4));;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.60, #408941), color-stop(0.60, #adabac));;
 }
 input[type=range]#pt60::-moz-range-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.60, #408941), color-stop(0.60, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.60, #408941), color-stop(0.60, #adabac));
 }
 input[type=range]#pt60::-ms-fill-lower {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.60, #408941), color-stop(0.60, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.60, #408941), color-stop(0.60, #adabac));
 }
 input[type=range]#pt60::-ms-fill-upper {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.60, #408941), color-stop(0.60, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.60, #408941), color-stop(0.60, #adabac));
 }
 input[type=range]#pt60:focus::-ms-fill-lower {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.60, #408941), color-stop(0.60, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.60, #408941), color-stop(0.60, #adabac));
 }
 input[type=range]#pt60:focus::-ms-fill-upper {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.60, #408941), color-stop(0.60, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.60, #408941), color-stop(0.60, #adabac));
 }
 
 
 
 input[type=range]#pt64::-webkit-slider-runnable-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.64, #408941), color-stop(0.64, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.64, #408941), color-stop(0.64, #adabac));
 }
 input[type=range]#pt64:focus::-webkit-slider-runnable-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.64, #408941), color-stop(0.64, #C4C4C4));;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.64, #408941), color-stop(0.64, #adabac));;
 }
 input[type=range]#pt64::-moz-range-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.64, #408941), color-stop(0.64, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.64, #408941), color-stop(0.64, #adabac));
 }
 input[type=range]#pt64::-ms-fill-lower {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.64, #408941), color-stop(0.64, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.64, #408941), color-stop(0.64, #adabac));
 }
 input[type=range]#pt64::-ms-fill-upper {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.64, #408941), color-stop(0.64, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.64, #408941), color-stop(0.64, #adabac));
 }
 input[type=range]#pt64:focus::-ms-fill-lower {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.64, #408941), color-stop(0.64, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.64, #408941), color-stop(0.64, #adabac));
 }
 input[type=range]#pt64:focus::-ms-fill-upper {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.64, #408941), color-stop(0.64, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.64, #408941), color-stop(0.64, #adabac));
 }
 
 
 
 input[type=range]#pt68::-webkit-slider-runnable-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.68, #408941), color-stop(0.68, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.68, #408941), color-stop(0.68, #adabac));
 }
 input[type=range]#pt68:focus::-webkit-slider-runnable-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.68, #408941), color-stop(0.68, #C4C4C4));;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.68, #408941), color-stop(0.68, #adabac));;
 }
 input[type=range]#pt68::-moz-range-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.68, #408941), color-stop(0.68, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.68, #408941), color-stop(0.68, #adabac));
 }
 input[type=range]#pt68::-ms-fill-lower {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.68, #408941), color-stop(0.68, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.68, #408941), color-stop(0.68, #adabac));
 }
 input[type=range]#pt68::-ms-fill-upper {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.68, #408941), color-stop(0.68, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.68, #408941), color-stop(0.68, #adabac));
 }
 input[type=range]#pt68:focus::-ms-fill-lower {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.68, #408941), color-stop(0.68, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.68, #408941), color-stop(0.68, #adabac));
 }
 input[type=range]#pt68:focus::-ms-fill-upper {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.68, #408941), color-stop(0.68, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.68, #408941), color-stop(0.68, #adabac));
 }
 
 
 
 input[type=range]#pt72::-webkit-slider-runnable-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.72, #408941), color-stop(0.72, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.72, #408941), color-stop(0.72, #adabac));
 }
 input[type=range]#pt72:focus::-webkit-slider-runnable-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.72, #408941), color-stop(0.72, #C4C4C4));;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.72, #408941), color-stop(0.72, #adabac));;
 }
 input[type=range]#pt72::-moz-range-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.72, #408941), color-stop(0.72, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.72, #408941), color-stop(0.72, #adabac));
 }
 input[type=range]#pt72::-ms-fill-lower {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.72, #408941), color-stop(0.72, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.72, #408941), color-stop(0.72, #adabac));
 }
 input[type=range]#pt72::-ms-fill-upper {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.72, #408941), color-stop(0.72, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.72, #408941), color-stop(0.72, #adabac));
 }
 input[type=range]#pt72:focus::-ms-fill-lower {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.72, #408941), color-stop(0.72, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.72, #408941), color-stop(0.72, #adabac));
 }
 input[type=range]#pt72:focus::-ms-fill-upper {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.72, #408941), color-stop(0.72, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.72, #408941), color-stop(0.72, #adabac));
 }
 
 
 
 input[type=range]#pt76::-webkit-slider-runnable-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.76, #408941), color-stop(0.76, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.76, #408941), color-stop(0.76, #adabac));
 }
 input[type=range]#pt76:focus::-webkit-slider-runnable-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.76, #408941), color-stop(0.76, #C4C4C4));;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.76, #408941), color-stop(0.76, #adabac));;
 }
 input[type=range]#pt76::-moz-range-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.76, #408941), color-stop(0.76, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.76, #408941), color-stop(0.76, #adabac));
 }
 input[type=range]#pt76::-ms-fill-lower {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.76, #408941), color-stop(0.76, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.76, #408941), color-stop(0.76, #adabac));
 }
 input[type=range]#pt76::-ms-fill-upper {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.76, #408941), color-stop(0.76, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.76, #408941), color-stop(0.76, #adabac));
 }
 input[type=range]#pt76:focus::-ms-fill-lower {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.76, #408941), color-stop(0.76, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.76, #408941), color-stop(0.76, #adabac));
 }
 input[type=range]#pt76:focus::-ms-fill-upper {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.76, #408941), color-stop(0.76, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.76, #408941), color-stop(0.76, #adabac));
 }
 
 
 
 input[type=range]#pt80::-webkit-slider-runnable-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.80, #408941), color-stop(0.80, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.80, #408941), color-stop(0.80, #adabac));
 }
 input[type=range]#pt80:focus::-webkit-slider-runnable-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.80, #408941), color-stop(0.80, #C4C4C4));;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.80, #408941), color-stop(0.80, #adabac));;
 }
 input[type=range]#pt80::-moz-range-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.80, #408941), color-stop(0.80, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.80, #408941), color-stop(0.80, #adabac));
 }
 input[type=range]#pt80::-ms-fill-lower {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.80, #408941), color-stop(0.80, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.80, #408941), color-stop(0.80, #adabac));
 }
 input[type=range]#pt80::-ms-fill-upper {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.80, #408941), color-stop(0.80, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.80, #408941), color-stop(0.80, #adabac));
 }
 input[type=range]#pt80:focus::-ms-fill-lower {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.80, #408941), color-stop(0.80, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.80, #408941), color-stop(0.80, #adabac));
 }
 input[type=range]#pt80:focus::-ms-fill-upper {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.80, #408941), color-stop(0.80, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.80, #408941), color-stop(0.80, #adabac));
 }
 
 
 
 input[type=range]#pt84::-webkit-slider-runnable-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.84, #408941), color-stop(0.84, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.84, #408941), color-stop(0.84, #adabac));
 }
 input[type=range]#pt84:focus::-webkit-slider-runnable-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.84, #408941), color-stop(0.84, #C4C4C4));;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.84, #408941), color-stop(0.84, #adabac));;
 }
 input[type=range]#pt84::-moz-range-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.84, #408941), color-stop(0.84, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.84, #408941), color-stop(0.84, #adabac));
 }
 input[type=range]#pt84::-ms-fill-lower {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.84, #408941), color-stop(0.84, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.84, #408941), color-stop(0.84, #adabac));
 }
 input[type=range]#pt84::-ms-fill-upper {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.84, #408941), color-stop(0.84, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.84, #408941), color-stop(0.84, #adabac));
 }
 input[type=range]#pt84:focus::-ms-fill-lower {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.84, #408941), color-stop(0.84, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.84, #408941), color-stop(0.84, #adabac));
 }
 input[type=range]#pt84:focus::-ms-fill-upper {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.84, #408941), color-stop(0.84, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.84, #408941), color-stop(0.84, #adabac));
 }
 
 
 
 input[type=range]#pt88::-webkit-slider-runnable-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.88, #408941), color-stop(0.88, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.88, #408941), color-stop(0.88, #adabac));
 }
 input[type=range]#pt88:focus::-webkit-slider-runnable-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.88, #408941), color-stop(0.88, #C4C4C4));;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.88, #408941), color-stop(0.88, #adabac));;
 }
 input[type=range]#pt88::-moz-range-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.88, #408941), color-stop(0.88, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.88, #408941), color-stop(0.88, #adabac));
 }
 input[type=range]#pt88::-ms-fill-lower {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.88, #408941), color-stop(0.88, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.88, #408941), color-stop(0.88, #adabac));
 }
 input[type=range]#pt88::-ms-fill-upper {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.88, #408941), color-stop(0.88, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.88, #408941), color-stop(0.88, #adabac));
 }
 input[type=range]#pt88:focus::-ms-fill-lower {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.88, #408941), color-stop(0.88, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.88, #408941), color-stop(0.88, #adabac));
 }
 input[type=range]#pt88:focus::-ms-fill-upper {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.88, #408941), color-stop(0.88, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.88, #408941), color-stop(0.88, #adabac));
 }
 
 
 
 input[type=range]#pt92::-webkit-slider-runnable-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.92, #408941), color-stop(0.92, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.92, #408941), color-stop(0.92, #adabac));
 }
 input[type=range]#pt92:focus::-webkit-slider-runnable-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.92, #408941), color-stop(0.92, #C4C4C4));;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.92, #408941), color-stop(0.92, #adabac));;
 }
 input[type=range]#pt92::-moz-range-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.92, #408941), color-stop(0.92, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.92, #408941), color-stop(0.92, #adabac));
 }
 input[type=range]#pt92::-ms-fill-lower {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.92, #408941), color-stop(0.92, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.92, #408941), color-stop(0.92, #adabac));
 }
 input[type=range]#pt92::-ms-fill-upper {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.92, #408941), color-stop(0.92, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.92, #408941), color-stop(0.92, #adabac));
 }
 input[type=range]#pt92:focus::-ms-fill-lower {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.92, #408941), color-stop(0.92, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.92, #408941), color-stop(0.92, #adabac));
 }
 input[type=range]#pt92:focus::-ms-fill-upper {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.92, #408941), color-stop(0.92, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.92, #408941), color-stop(0.92, #adabac));
 }
 
 
 
 input[type=range]#pt96::-webkit-slider-runnable-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.96, #408941), color-stop(0.96, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.96, #408941), color-stop(0.96, #adabac));
 }
 input[type=range]#pt96:focus::-webkit-slider-runnable-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.96, #408941), color-stop(0.96, #C4C4C4));;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.96, #408941), color-stop(0.96, #adabac));;
 }
 input[type=range]#pt96::-moz-range-track {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.96, #408941), color-stop(0.96, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.96, #408941), color-stop(0.96, #adabac));
 }
 input[type=range]#pt96::-ms-fill-lower {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.96, #408941), color-stop(0.96, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.96, #408941), color-stop(0.96, #adabac));
 }
 input[type=range]#pt96::-ms-fill-upper {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.96, #408941), color-stop(0.96, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.96, #408941), color-stop(0.96, #adabac));
 }
 input[type=range]#pt96:focus::-ms-fill-lower {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.96, #408941), color-stop(0.96, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.96, #408941), color-stop(0.96, #adabac));
 }
 input[type=range]#pt96:focus::-ms-fill-upper {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0.96, #408941), color-stop(0.96, #C4C4C4));
+    background: -webkit-gradient(linear, left top, right top, color-stop(0.96, #408941), color-stop(0.96, #adabac));
 }
 
 
@@ -1125,6 +1176,7 @@ input[type="radio"]:checked + label span.s2.radio::after {
 	clear: both;
 }
 .barContainer .chart{
+    margin-top: 10px;
 	position: relative;
 }
 .bar{
@@ -1179,12 +1231,12 @@ input[type="radio"]:checked + label span.s2.radio::after {
 	fill: #E5E5E5;
 }
 .baselineLine{
-	stroke: #C4C4C4;
+	stroke: #adabac;
 	stroke-width: 2px;
 }
 .baselineDot{
 	stroke: none;
-	fill: #C4C4C4;
+	fill: #adabac;
 }
 .tickLabel{
 	position: absolute;
@@ -1194,6 +1246,10 @@ input[type="radio"]:checked + label span.s2.radio::after {
 .barLabel{
 	font-size: 12px;
 	font-weight: bold;
+}
+.baseLineLabel{
+    font-size: 12px;
+    fill: #adabac;
 }
 
 /*********************************************************************************/

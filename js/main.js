@@ -1,7 +1,8 @@
 var S1_DEFAULTS = {"a": "7000"}
 var S2_DEFAULTS = {"a": "5000", "b": "0.5", "c": "1"}
 var CHART_LABELS = ["","First quartile, dependent","Second quartile, dependent","Third quartile, dependent","Fourth quartile, dependent","Independent students","High school diploma or less","Associate&rsquo;s degree or some college","Bachelor&rsquo;s degree","Master&rsquo;s degree or higher","White","Black/African American","Hispanic/Latino","Asian","Another race","Public 4-year","Private nonprofit 4-year","Public 2-year","Private for profit","Other","No","Yes","Without children","With children"]
-var BAR_HEIGHT = 50;
+var BAR_HEIGHT = 60,
+	BAR_RATIO = .65;
 
 var THOUSANDS = d3.format("$,.0f")
 var PERCENT = d3.format(".0%")
@@ -18,6 +19,7 @@ var BIG_BILLIONS = function(val){
 }
 
 var PRINT = false;
+var isIE = false;
 
 function IS_1200(){
   if(PRINT){ return false }
@@ -144,13 +146,13 @@ function buildChart(allData, category, scenario){
 
 
 	x.domain([0, .85]);
-	y.domain(data.map(function(d) { return d.label; })).padding(0.4);
+	y.domain(data.map(function(d) { return d.label; }));
 
 	chartContainer.selectAll(".tickLabel")
 		.data(data)
 		.enter().append("div")
 		.attr("class", "tickLabel chartLabel")
-		.style("top", function(d){ return (y(d.label) + BAR_HEIGHT * .5) + "px" })
+		.style("top", function(d){ return (y(d.label) + BAR_HEIGHT * .4) + "px" })
 		.html(function(d){ return d.label })
 
 
@@ -159,7 +161,7 @@ function buildChart(allData, category, scenario){
 		.enter().append("rect")
 			.attr("class", scenario + " " + "baselineBar")
 			.attr("x", 0)
-			.attr("height", BAR_HEIGHT*.75)
+			.attr("height", BAR_HEIGHT*BAR_RATIO)
 			.attr("y", function(d) { return y(d.label); })
 			.attr("width", function(d) { return x(d[BASELINE_KEY_PERCENT]); })
 
@@ -168,7 +170,7 @@ function buildChart(allData, category, scenario){
 		.enter().append("rect")
 			.attr("class", scenario + " " + category + " " + "bar")
 			.attr("x", 0)
-			.attr("height", BAR_HEIGHT*.75)
+			.attr("height", BAR_HEIGHT*BAR_RATIO)
 			.attr("y", function(d) { return y(d.label); })
 			.attr("width", function(d) { return x(d[getKey(scenario)]); })
 
@@ -179,23 +181,51 @@ function buildChart(allData, category, scenario){
 			.attr("x1", function(d) { return x(d[BASELINE_KEY_PERCENT]); })
 			.attr("x2", function(d) { return x(d[BASELINE_KEY_PERCENT]); })
 			.attr("y1", function(d) { return y(d.label); })
-			.attr("y2", function(d) { return y(d.label) + BAR_HEIGHT*.75; })
+			.attr("y2", function(d) { return y(d.label) + BAR_HEIGHT*BAR_RATIO; })
 
 	g.selectAll(".baselineDot")
 		.data(data)
 		.enter().append("circle")
 			.attr("class", scenario + " " + "baselineDot")
 			.attr("cx", function(d) { return x(d[BASELINE_KEY_PERCENT]); })
-			.attr("cy", function(d) { return y(d.label) + BAR_HEIGHT*.75*.5; })
+			.attr("cy", function(d) { return y(d.label) + BAR_HEIGHT*BAR_RATIO*.5; })
 			.attr("r", 5)
+
+	g.selectAll(".baseLineLabel")
+		.data(data)
+		.enter().append("text")
+			.attr("class", scenario + " " + "baseLineLabel")
+			.attr("x", function(d) { return x(d[BASELINE_KEY_PERCENT]) - xScootch(d[BASELINE_KEY_PERCENT], "percent"); })
+			.attr("y", function(d) { return y(d.label) + BAR_HEIGHT*BAR_RATIO*.5 - 25; })
+			.text(function(d){ return PERCENT_FINE(d[BASELINE_KEY_PERCENT]) })
 
 	g.selectAll(".barLabel")
 		.data(data)
 		.enter().append("text")
 			.attr("class", scenario + " " + "barLabel")
 			.attr("x", function(d) { return x(d[getKey(scenario)]) + 10; })
-			.attr("y", function(d) { return y(d.label) + BAR_HEIGHT*.75*.5 + 4.5; })
+			.attr("y", function(d) { return y(d.label) + BAR_HEIGHT*BAR_RATIO*.5 + 4.5; })
 			.text(function(d){ return PERCENT_FINE(d[getKey(scenario)]) })
+
+}
+
+function xScootch(val, unit){
+	if(unit == "percent"){
+		if (val < .1){
+			return 8
+		}else{
+			return 15
+		}
+	}else{
+		if (val < 10){
+			return 11
+		}
+		else if( val < 999){
+			return 18
+		}else{
+			return 25
+		}
+	}
 
 }
 
@@ -323,6 +353,13 @@ function updateCharts(scenario){
 	.transition()
 	.attr("cx", function(d) { return x(d[baseline_key]); })
 
+	d3.selectAll(".baseLineLabel." +  scenario)
+		.text(function(d){ return formatter(d[baseline_key])} )
+		.transition()
+			.attr("x", function(d) { return x(d[baseline_key]) - xScootch(d[baseline_key], unit); })
+			
+
+
 }
 
 function getInputSelector(obj){
@@ -425,6 +462,30 @@ function showScenario(scenario){
 	d3.select("#scenarioTabs").attr("class", scenario)
 }
 
+
+var counter = 0;
+function checkReady() {
+  counter += 1;
+  var drawn = d3.select(".bar").node();
+  if (drawn == null) {
+    if(counter >= 7){
+        d3.select("#loadingText")
+          .html("Almost done&#8230; thanks for your patience!")
+    }
+    setTimeout("checkReady()", 100);
+  } else {
+    setTimeout(function(){
+        d3.select("#loadingContainer")
+          .transition()
+          .style("opacity", 0)
+          .on("end", function(){
+          	d3.select(this).remove()
+          })
+    },500);
+  }
+}
+
+
 function init(data){
 	buildChart(data, "income", "s1")
 	buildChart(data, "parentsEd", "s1")
@@ -486,7 +547,9 @@ d3.selectAll(".radioInput.s2").on("input", function(){
 d3.csv("data/data.csv", function(data){
 	init(data)
 })
+checkReady();
 
 $(window).resize(function(){
-	updateCharts(getScenario())
+	updateCharts("s1")
+	updateCharts("s2")
 })

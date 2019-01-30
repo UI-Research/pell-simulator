@@ -126,6 +126,9 @@
 	.sliderMin.c{
 		left: -12px;
 	}
+	.chartContainer{
+		margin-top: 40px;
+	}
 }
 @media(max-width: 769px){
 /* home */
