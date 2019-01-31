@@ -81,6 +81,10 @@
 	#scenarioTabs{
 		/*display: none;*/
 	}
+	.scenarioContainer.hidden {
+	    top: 109px;
+	    width: 100%;
+	}
 	.inputContainer{
 		width: 100%;
 		padding-right: 0px;
@@ -104,7 +108,7 @@
 		font-size: 26px;
     	margin-bottom: 3px;
     }
-    .chartHeader{
+    .oneYear .chartHeader, .radioRow .chartHeader{
     	font-weight: normal;
     	font-size: 18px;
     }
@@ -151,6 +155,11 @@
 		margin-top: 40px;
 	}
 }
+@media(max-width: 810px){
+	#footerContent{
+		width: 100%;
+	}
+}
 @media(max-width: 769px){
 /* home */
 	#isMobile{
@@ -159,25 +168,59 @@
 	#homeCopy{
 		margin-top: 670px
 	}
+	#titleContainer{
+		border-bottom: 1px solid #D2D2D2;
+		margin-bottom: 40px;
+		padding-bottom: 20px;
+	}
+	#scenarioTabs{
+		display: none;
+	}
+	#mobileScenario{
+		display: block;
+	}
+	#mainContent, #approachesContainer, #smallFooter div {
+	    width: calc(100% - 40px);
+	}
+	#barCharts{
+		width: 100%;
+	}
+	.avgContainer{
+		margin-top: 20px;
+    	margin-bottom: 10px;
+    	display: block;
+	}
+	#title{
+		font-size: 35px;
+	}
+	input[type=range] {
+	    width: 100%;
+	}
 
-}
-@media(max-width: 620px){
-/* home */
-/*	#isPhone{
-		display: block;
+	@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+	  input[type=range] {
+	    width: 100%;
+	  }
 	}
-	#mainContent,#approachesContainer,#smallFooter div, #footerContent{
-		width: calc(100% - 80px);
+	.sliderContainer {
+	    width: 100%;
 	}
-*/}
-@media(max-width: 500px){
-/* home */
-/*	#isSmallPhone{
-		display: block;
+	.sliderMin {
+	    left: 0px !important;
 	}
-	#mainContent,#approachesContainer,#smallFooter div, #footerContent{
-		width: calc(100% - 50px);
+	.sliderMax {
+	    right: 0px !important;
+	    left: auto !important;
 	}
-*/}
-@media(max-width: 400px){
+	.barContainer {
+	    width: 100%;
+	    /* margin-right: 40px; */
+	    margin: 0;
+	}
+	#loadingContainer{
+		top: -50px;
+	}
+	#loadingText{
+		font-size: 16px;
+	}
 }

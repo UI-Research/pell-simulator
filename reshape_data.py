@@ -20,6 +20,12 @@ rHead = ["type","category","subcategory"]
 
 for row in cr:
 	rh = ""
+
+# TO BE REMOVED
+	# if(row[h["a"]] != "6000"):
+	# 	continue
+#################
+
 	if row[h["b"]] == "":
 		rh = "s1_" + row[h["a"]]
 	else:

@@ -288,6 +288,20 @@ a.inverted:hover{
     width: 100%;
     height: 105px;
 }
+#mobileScenario{
+    display: none;
+}
+#mobileScenario select{
+    display: none !important;
+}
+#mobileScenarioHeader{
+    font-size: 16px;
+    text-transform: uppercase;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 12px;
+    color: #000;
+}
 #scenarioTabs.s1{
 	border-bottom: 2px solid #1696D2;
 }
@@ -454,7 +468,7 @@ a.inverted:hover{
 .sliderMax.b, .sliderMax.c{
 	left: 236px
 }
-.sidebar.button{
+.sidebar.button, #footerContent .button{
     text-transform: uppercase;
     width: 198px;
     text-align: center;
@@ -465,6 +479,17 @@ a.inverted:hover{
     cursor: pointer;
 
 }
+#footerContent .button{
+    border: 2px solid #353535;
+    color: #353535;
+    display: inline-block;
+    margin-right: 20px;
+    font-weight: normal;
+}
+#footerContent .button:hover{
+    background: #353535;
+    color: #fff;
+}
 .inputContainer.s1 .sidebar.button{
     color: #169dd2;
     background: white;
@@ -472,6 +497,7 @@ a.inverted:hover{
 }
 .inputContainer.s1 .sidebar.button:hover{
     background: #73BFE2;
+    border:2px solid #73BFE2;
     color: white;
 }
 
@@ -482,6 +508,7 @@ a.inverted:hover{
 }
 .inputContainer.s2 .sidebar.button:hover{
     background: #98CF90;
+    border:2px solid #98CF90;
     color: white;
 
 }
@@ -1171,6 +1198,7 @@ input[type="radio"]:checked + label span.s2.radio::after {
 	display: inline-block;
     float: left;
     margin-right: 50px;
+    margin-top: -10px;
 }
 .barContainer.benefits{
 	clear: both;
@@ -1326,6 +1354,9 @@ input[type="radio"]:checked + label span.s2.radio::after {
 	height: 100%;
 	z-index: 1000;
 }
+body.print #header-pinned, body.print #scenarioTabs, body.print .sidebar.button{
+    display: none;
+}
 .print.page{
 	height: 320mm;
 	position: relative;
@@ -1349,201 +1380,51 @@ body.print .introText {
 body.print #titleContainer{
 	padding-bottom: 20px;
 }
-body.print #cityTitle, body.print #groupTitle{
-	font-size: 28px;
-}
-body.print #highlightsContainer{
-	margin-top: 30px;
-}
-body.print #groupTitle{
-	font-size: 22px;
-	margin-bottom: 13px;
-}
-body.print.city #cityTitle{
-	margin-bottom: 10px;
-}
-body.print.city #groupSubtitle{
-	font-size: 18px;
-	margin-bottom: 7px;
-	padding-bottom: 3px;
-}
-#printCityList{
-	font-size: 14px;
-    margin-bottom: 20px;
-}
-body.print #chartContainer {
-    margin-top: 53px;
-}
-body.print .highlightLi {
-    font-size: 14px;
-    line-height: 18px;
-    padding-left: 8px;
-    margin-bottom: 17px;
-}
-body.print .keyItem{
-	width: 0px;
-	height: 0px;
-}
-body.print .keyItem.city{
-	border: 10px solid #1696d2;
-	display: none;
-}
-body.print .keyItem.group{
-	border: 10px solid  #D2D2D2;
-}
-body.print .keyItem.national{
-	border: 10px solid  #000000;
-}
-body.print .smallChartContainer{
-	margin-bottom: 10px;
-	height: 130px;
-}
-body.print #chartContainer{
-	width: 820px;
-	border-bottom: none;
-}
-body.print #charts{
-	height: 440px;
-}
-body.print #chartContainer{
-	height: 510px;
-}
-body.print .barLabel, body.print .barLabelHide{
-	font-size: 12px;
-}
-body.print .metricName{
-	font-size: 13px;
-	width: 130px;
-	top: 110px;
-}
-
-body.print #chartSource{
-	margin-top: 15px;
-}
-.thin.logo img{
-	height: 14px;
-    margin-top: 30px;
+body.print #mainContent{
+    width: 210mm;
     position: absolute;
-    bottom: 0px;
+    left: 0px;
 }
-
-
-body.print #approachesInnerContainer{
-	width: 100%;
+body.print .inputContainer {
+    width: 58mm;
+    padding-right: 0px;
 }
-body.print #approachesContainer{
-	margin-top: 10px;
-	border-bottom: none;
+body.print .p1 {
+    font-size: 14px;
+    line-height: 20px;
 }
-body.print .approachesIntro, body.print #approachesList, body.print .approachLi, body.print .approachLi ul li{
-	font-size: 14px;
-	line-height: 19px;
+body.print .chartContainer{
+    width: 139mm;
+    margin-left: 10mm;
 }
-body.print .approachLi{
-	margin-bottom: 17px;
-}
-body.print .approachLi ul li{
-	margin-bottom: 10px;
-}
-body.print #groupCitiesTitle{
-	margin-bottom: 10px;
-}
-body.print .groupCity{
-	color: #353535;
-}
-
-#printFooter{
-	position: absolute;
-    bottom: 0px;
-    border-top: 1px solid #959595;
-}
-#printFooter .full.logo{
-	float: left;
-    padding-top: 30px;
-}
-#printNotes{
-	float: left;
-    width: calc(100% - 240px);
-    margin-top: 20px;
-    padding-left: 90px;
-    text-align: left;
-    font-size: 11px;
-}
-
-.full.logo.top{
-	margin-top: 10px;
-}
-.full.logo img{
-	width: 124px;
-}
-body.print .thinButton{
-	display: none;
-}
-body.print a{
-	text-decoration: none;
-	color: #353535;
-}
-
 body.print #controlsContainer{
-	margin-top: 40px;
+    width: 210mm;
 }
-#printDefLeft{
-	float: left;
-	width: 43%;
-	margin-top: 0px;
+body.print .scenarioContainer{
+    width: 210mm;
+    opacity: 1;
+    position: relative;
 }
-#printDefRight{
-	float: right;
-	width: 43%;
-	margin-top: 0px;
+body.print .barContainer{
+    width: 50%;
+    margin-right: 0px;
 }
-body.print #groupCitiesTitle, #printDefTitle{
-	font-size: 24px;
-	width: 380px;
-	text-transform: uppercase;
-	font-style: normal;
-	margin-bottom: 42px;
+body.print #mobileScenario{
+    display: none;
 }
-#printDefTitle{
-	float: left;
-	margin-top: 70px;
-	width: 100%;
-}
-body.print #mapContainer{
-	margin-top: 60px;
-}
-#printDefs ul li{
-	font-size: 14px;
-	margin-bottom: 20px;
-}
-body.print .groupCity{
-	position: relative;
-}
-body.print .groupCity{
-	color: transparent;
-}
-.lilSvg{
-	position: absolute;
-	top: 0px;
-	left: 0px;
-}
-#print-fallback{
-	display: none;
-	width: 100%;
-}
-#home-print-logo{
-	display: none;
-	width: 2in;
+body.print .chartLabel {
+    font-size: 14px;
+    width: 101px !important;
 }
 @media print{
   @page {
-    size: 210mm 297mm; /* portrait 
+    size: 220mm 297mm; /* portrait 
     /* you can also specify margins here: */
     margin: 15mm;	
    /*margin-right: 45mm;  for compatibility with both A4 and Letter */
   }
    body.print a:after{
-   	content: none !important;
+   	/*content: none !important;*/
    }
    .page-break { height:0; page-break-after:always; margin:0; border-top:none; }
 }

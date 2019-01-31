@@ -53,7 +53,12 @@ var BASELINE_KEY_PERCENT = "s1_4000_percent_baseline"
 var BASELINE_KEY_DOLLARS = "s1_4000_dollars_baseline"
 
 
-
+function getQueryString(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+};
 
 
 
@@ -93,19 +98,28 @@ function getKey(scenario){
 	var units = getUnits(scenario)
 	var inputs = getInputs(scenario)
 
-	if (scenario == "s1"){
-		return scenario + "_" + toKeyString(inputs["a"]) + "_" + units
+	if (PRINT){
+		if (scenario == "s1"){
+			return scenario + "_" + toKeyString(inputs["a"]) + "_" + units
+		}else{
+			return scenario + "_" + toKeyString(inputs["a"]) + "_" + toKeyString(inputs["b"]) + "_" + toKeyString(inputs["c"]) + "_" + units
+		}
+
 	}else{
-		return scenario + "_" + toKeyString(inputs["a"]) + "_" + toKeyString(inputs["b"]) + "_" + toKeyString(inputs["c"]) + "_" + units
+		if (scenario == "s1"){
+			return scenario + "_" + toKeyString(inputs["a"]) + "_" + units
+		}else{
+			return scenario + "_" + toKeyString(inputs["a"]) + "_" + toKeyString(inputs["b"]) + "_" + toKeyString(inputs["c"]) + "_" + units
+		}
 	}
 }
 
 function getChartWidth(){
 	if(IS_MOBILE()){
-		return (d3.select(".chartContainer").node().getBoundingClientRect().width - 20);
+		console.log("foo")
+		return (d3.select(".chartContainer").node().getBoundingClientRect().width + 50);
 	}
 	else if(IS_1000()){
-		console.log(d3.select(".chartContainer").node().getBoundingClientRect().width * .5 - 20)
 		return (d3.select(".chartContainer").node().getBoundingClientRect().width * .5 + 20);
 	}
 	else if(IS_1200()){
@@ -136,8 +150,9 @@ function buildChart(allData, category, scenario){
 	var h = data.length * (BAR_HEIGHT + 10) + 40;
 	var svg = chartContainer.append("svg").attr("width", w).attr("height",h)
 
+	var mL = (PRINT) ? 110 : 155;
 
-    var margin = {top: 20, right: 120, bottom: 30, left: 155},
+    var margin = {top: 20, right: 120, bottom: 30, left: mL},
     width = w - margin.left - margin.right,
     height = h - margin.top - margin.bottom;
   
@@ -312,6 +327,14 @@ function buildAverageData(allData, scenario){
 	updateAverageData(scenario)
 }
 
+function buildScenarioMenu(){
+	     $("#scenarioMenu" ).selectmenu({
+      change: function(event, d){
+      	showScenario(d.item.value)
+      }
+    })
+}
+
 function updateCharts(scenario){
 	var unit = getUnits(scenario);
 	var formatter = (unit == "percent") ? PERCENT_FINE : THOUSANDS;
@@ -461,11 +484,33 @@ function showScenario(scenario){
 			hide.classed("hidden", true)
 		})
 
+	$("#scenarioMenu").val(scenario).selectmenu("refresh")
+
 	d3.select(".scenarioTab." + scenario).classed("active", true)
 	d3.select(".scenarioTab." + other).classed("active", false)
 	d3.select("#scenarioTabs").attr("class", scenario)
 }
 
+
+function openPrintView(){
+	var s1 = getInputs("s1"),
+		s2 = getInputs("s2"),
+		a1 = s1["a"],
+		a2 = s2["a"],
+		b = s2["b"],
+		c = s2["c"];
+	var url = "index.html?print=print&a1=" + a1 + "&a2=" + a2 + "&b=" + b + "&c=" + c
+	window.open(url, '_blank');
+
+}
+function buildPrintView(){
+	d3.select("body").classed("print", true)
+	PRINT = true;
+	// d3.select("body").append("div").attr("class", "print cover")
+
+	d3.selectAll(".printStart").text("The")
+
+}
 
 var counter = 0;
 function checkReady() {
@@ -487,10 +532,15 @@ function checkReady() {
           })
     },500);
   }
+
+  // d3.select("#loadingContainer").remove();
 }
 
 
 function init(data){
+	if(getQueryString("print") == "print"){
+		buildPrintView()
+	}
 	buildChart(data, "income", "s1")
 	buildChart(data, "parentsEd", "s1")
 	buildChart(data, "race", "s1")
@@ -510,6 +560,8 @@ function init(data){
 
 	buildAverageData(data, "s1")
 	buildAverageData(data, "s2")
+
+	buildScenarioMenu();
 
 	updateInputs("s1");
 	updateInputs("s2");
@@ -547,6 +599,8 @@ d3.selectAll(".radioInput.s2").on("input", function(){
 	updateAverageData("s2")
 })
 
+d3.selectAll(".button.print").on("click", openPrintView)
+
 
 d3.csv("data/data.csv", function(data){
 	init(data)
@@ -554,6 +608,8 @@ d3.csv("data/data.csv", function(data){
 checkReady();
 
 $(window).resize(function(){
-	updateCharts("s1")
-	updateCharts("s2")
+	if(!PRINT){
+		updateCharts("s1")
+		updateCharts("s2")
+	}
 })

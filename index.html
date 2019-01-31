@@ -107,11 +107,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
     <!-- END TITLE BLOCK -->
 
-    <img src = "img/homepage-print-fallback.png" id = "print-fallback"/>
     <div id = "controlsContainer">
       <div id = "scenarioTabs" class = "s1">
         <div class = "scenarioTab s2">Simplified Formula</div>
         <div class = "scenarioTab s1 active">Change Maximum Pell</div>
+      </div>
+
+      <div id = "mobileScenario">
+        <div id = "mobileScenarioHeader">CHOOSE YOUR APPROACH</div>
+        <select id = "scenarioMenu">
+          <option value = "s1">Change maximum Pell</option>
+          <option value = "s2">Use a simplified formula</option>
+        </select>
       </div>
 
 
@@ -132,12 +139,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
           <div class = "sliderContainer">
             <div class = "sliderLabel sliderMin a s1 dollars"></div>
-            <input class = "slider a s1" min = 4000 max = 10000 value = 6100 step = 100 type = "range">
+            <input class = "slider a s1" min = 4000 max = 10000 value = 6000 step = 100 type = "range">
             <div class = "sliderLabel sliderValue a s1 dollars"></div>
             <div class = "sliderLabel sliderMax a s1 dollars"></div>
           </div>
 
-          <div class = "p1 s1">Change the maximum Pell grant amount</div>
+          <div class = "p1 s1"><span class ="printStart">Change the</span> maximum Pell grant amount</div>
 
           <div class = "sidebar button print">Print data</div>
         </div>
@@ -232,7 +239,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class = "sliderLabel sliderValue a s2 dollars"></div>
             <div class = "sliderLabel sliderMax a s2 dollars"></div>
           </div>
-          <div class = "p1 s2">Change the maximum Pell grant amount</div>
+          <div class = "p1 s2"><span class ="printStart">Change the</span> maximum Pell grant amount</div>
 
           <div class = "h2 colorText s2">Phase-out begins</div>
 
@@ -243,7 +250,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class = "sliderLabel sliderMax b s2 percent"></div>
           </div>
 
-          <div class = "p1 s2">Choose the income level (as a percent of the federal poverty level) when Pell grants start phasing out</div>
+          <div class = "p1 s2"><span class ="printStart">Choose the</span> income level (as a percent of the federal poverty level) when Pell grants start phasing out</div>
 
           <div class = "h2 colorText s2">Phase-out ends</div>
 
@@ -254,7 +261,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class = "sliderLabel sliderMax c s2 percent"></div>
           </div>
 
-          <div class = "p1 s2">Choose the income level (as a percent of the federal poverty level) at which students are no longer eligible for Pell grants</div>
+          <div class = "p1 s2"><span class ="printStart">Choose the</span> income level (as a percent of the federal poverty level) at which students are no longer eligible for Pell grants</div>
 
 
 
@@ -377,7 +384,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <!-- END FOOTER -->
 
 
-  
+
   </div>
   <!-- END MAIN CONTENT -->
 
