@@ -75,8 +75,8 @@
 		width: 100%;
 	}
 	.barContainer {
-	    width: 290px;
-    	margin-right: 40px;
+	    width: calc(50% - 50px);
+    	/*margin-right: 40px;*/
     }
 	#scenarioTabs{
 		/*display: none;*/
@@ -100,6 +100,27 @@
 		font-size: 16px;
 		margin-bottom: 10px;
 	}
+	.largeText{
+		font-size: 26px;
+    	margin-bottom: 3px;
+    }
+    .chartHeader{
+    	font-weight: normal;
+    	font-size: 18px;
+    }
+    .baselineText{
+		font-size: 14px;
+    	margin-top: 1px;
+    }
+	.costSubcontainer .chartLabel {
+	    font-size: 16px;
+	    font-weight: normal;
+	}
+	.medText{
+		font-size: 20px;
+	}
+
+
 	input[type=range] {
 	    width: 500px;
 	}

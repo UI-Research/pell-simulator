@@ -101,8 +101,12 @@ function getKey(scenario){
 }
 
 function getChartWidth(){
-	if(IS_1000()){
-		return 350;
+	if(IS_MOBILE()){
+		return (d3.select(".chartContainer").node().getBoundingClientRect().width - 20);
+	}
+	else if(IS_1000()){
+		console.log(d3.select(".chartContainer").node().getBoundingClientRect().width * .5 - 20)
+		return (d3.select(".chartContainer").node().getBoundingClientRect().width * .5 + 20);
 	}
 	else if(IS_1200()){
 		return 650;

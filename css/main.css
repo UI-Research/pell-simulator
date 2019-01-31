@@ -471,7 +471,7 @@ a.inverted:hover{
     border: 2px solid #1696d2;
 }
 .inputContainer.s1 .sidebar.button:hover{
-    background: #169dd2;
+    background: #73BFE2;
     color: white;
 }
 
@@ -481,7 +481,7 @@ a.inverted:hover{
     border: 2px solid #408941;
 }
 .inputContainer.s2 .sidebar.button:hover{
-    background: #408941;
+    background: #98CF90;
     color: white;
 
 }
@@ -1258,7 +1258,7 @@ input[type="radio"]:checked + label span.s2.radio::after {
 
 #footerContainer{
 	margin-top: 90px;
-	background-color: #F5F5F5;
+	border-top: 2px solid #D2D2D2;
 }
 #footerContent{
 	width: 700px;
