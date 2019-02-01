@@ -11,34 +11,34 @@
 
 @media(max-width: 1200px){
 /* home */
-	#breakpoint1200{
+	body.noPrint #breakpoint1200{
 		display: block;
 	}
-	#mainContent,#smallFooter div, #controlsContainer{
+	body.noPrint #mainContent,#smallFooter div, #controlsContainer{
 		width: 900px;
 	}
-	#controlsContainer{
+	body.noPrint #controlsContainer{
 		width: 900px
 	}
-	.inputContainer{
+	body.noPrint .inputContainer{
 		width: 220px;
 	}
-	.avgContainer, .costSubcontainer {
+	body.noPrint .avgContainer, .costSubcontainer {
 		width: 275px;
 	}
-	.avgContainer{
+	body.noPrint .avgContainer{
 		margin-left: 18px;
 	}
-	.chartContainer{
+	body.noPrint .chartContainer{
 		width: 590px;
 	}
-	.inputContainer{
+	body.noPrint .inputContainer{
 		margin-top: 2px;
 	}
-	.scenarioContainer.hidden{
+	body.noPrint .scenarioContainer.hidden{
 		top: 147px;
 	}
-	.chartHeader{
+	body.noPrint .chartHeader{
 		font-size: 22px;
 	}
 	input[type=range] {
@@ -50,10 +50,10 @@
 	    width: 220px;
 	  }
 	}
-	.sliderMax.a{
+	body.noPrint .sliderMax.a{
 		left: 191px;
 	}
-	.sliderMax.b, .sliderMax.c{
+	body.noPrint .sliderMax.b, .sliderMax.c{
 		left: 206px
 	}
 
@@ -62,65 +62,71 @@
 /**/
 @media(max-width: 1000px){
 /* home */
-	#breakpoint1000{
+	body.noPrint #breakpoint1000{
 		display: block;
 	}
-	#homeCopy{
+	body.noPrint #homeCopy{
 		width: 100%;
 	}
-	#mainContent,#approachesContainer,#smallFooter div{
+	body.noPrint #mainContent,#approachesContainer,#smallFooter div{
 		width: calc(100% - 100px);
 	}
-	#controlsContainer, .chartContainer{
+	body.noPrint #controlsContainer, .chartContainer{
 		width: 100%;
 	}
-	.barContainer {
+	body.noPrint .barContainer {
 	    width: calc(50% - 50px);
+	    float: none;
+	    margin-right: 45px;
     	/*margin-right: 40px;*/
     }
-	#scenarioTabs{
+	body.noPrint #scenarioTabs{
 		/*display: none;*/
 	}
-	.scenarioContainer.hidden {
+	body.noPrint .scenarioContainer.hidden {
 	    top: 109px;
 	    width: 100%;
 	}
-	.inputContainer{
+	body.noPrint .inputContainer{
 		width: 100%;
 		padding-right: 0px;
 	}
-	.introText{
+		body.noPrint .chartContainer{
+		width: 100%;
+	}
+
+	body.noPrint .introText{
 		font-size: 16px;
 	}
-	.p1{
+	body.noPrint .p1{
 		font-size: 14px;
 		line-height: 21px;
 		width: 100%;
 	}
-	.p1.top{
+	body.noPrint .p1.top{
 		margin-bottom: 10px;
 	}
-	.h1.colorText{
+	body.noPrint .h1.colorText{
 		font-size: 16px;
 		margin-bottom: 10px;
 	}
-	.largeText{
+	body.noPrint .largeText{
 		font-size: 26px;
     	margin-bottom: 3px;
     }
-    .oneYear .chartHeader, .radioRow .chartHeader{
+	body.noPrint .oneYear .chartHeader, .radioRow .chartHeader{
     	font-weight: normal;
     	font-size: 18px;
     }
-    .baselineText{
+	body.noPrint .baselineText{
 		font-size: 14px;
     	margin-top: 1px;
     }
-	.costSubcontainer .chartLabel {
+	body.noPrint .costSubcontainer .chartLabel {
 	    font-size: 16px;
 	    font-weight: normal;
 	}
-	.medText{
+	body.noPrint .medText{
 		font-size: 20px;
 	}
 
@@ -134,63 +140,64 @@
 	    width: 500px;
 	  }
 	}
-	.sliderContainer{
+	body.noPrint .sliderContainer{
 		width: 500px;
 	}
-	.sliderMax.a{
+	body.noPrint .sliderMax.a{
     	right: -24px;
     	left: auto;
 	}
-	.sliderMax.b, .sliderMax.c{
+	body.noPrint .sliderMax.b, .sliderMax.c{
 		left: auto;
 		right: -20px;
 	}
-	.sliderMin.b{
+	body.noPrint .sliderMin.b{
 		left: -3px;
 	}
-	.sliderMin.c{
+	body.noPrint .sliderMin.c{
 		left: -12px;
 	}
-	.chartContainer{
+	body.noPrint .chartContainer{
 		margin-top: 40px;
 	}
 }
 @media(max-width: 810px){
-	#footerContent{
+	body.noPrint #footerContent{
 		width: 100%;
 	}
 }
 @media(max-width: 769px){
 /* home */
-	#isMobile{
+	body.noPrint #isMobile{
 		display: block;
 	}
-	#homeCopy{
+	body.noPrint #homeCopy{
 		margin-top: 670px
 	}
-	#titleContainer{
+	body.noPrint #titleContainer{
 		border-bottom: 1px solid #D2D2D2;
 		margin-bottom: 40px;
 		padding-bottom: 20px;
 	}
-	#scenarioTabs{
+	body.noPrint #scenarioTabs{
 		display: none;
 	}
-	#mobileScenario{
+	body.noPrint #mobileScenario{
 		display: block;
 	}
-	#mainContent, #approachesContainer, #smallFooter div {
+	body.noPrint #mainContent, #approachesContainer, #smallFooter div {
 	    width: calc(100% - 40px);
 	}
-	#barCharts{
+	body.noPrint #barCharts{
 		width: 100%;
 	}
-	.avgContainer{
+	body.noPrint .avgContainer{
 		margin-top: 20px;
     	margin-bottom: 10px;
     	display: block;
+    	clear: both;
 	}
-	#title{
+	body.noPrint #title{
 		font-size: 35px;
 	}
 	input[type=range] {
@@ -202,25 +209,25 @@
 	    width: 100%;
 	  }
 	}
-	.sliderContainer {
+	body.noPrint .sliderContainer {
 	    width: 100%;
 	}
-	.sliderMin {
+	body.noPrint .sliderMin {
 	    left: 0px !important;
 	}
-	.sliderMax {
+	body.noPrint .sliderMax {
 	    right: 0px !important;
 	    left: auto !important;
 	}
-	.barContainer {
+	body.noPrint .barContainer {
 	    width: 100%;
 	    /* margin-right: 40px; */
 	    margin: 0;
 	}
-	#loadingContainer{
+	body.noPrint #loadingContainer{
 		top: -50px;
 	}
-	#loadingText{
+	body.noPrint #loadingText{
 		font-size: 16px;
 	}
 }

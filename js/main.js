@@ -1,8 +1,24 @@
 var S1_DEFAULTS = {"a": "7000"}
 var S2_DEFAULTS = {"a": "5000", "b": "0.5", "c": "1"}
-var CHART_LABELS = ["","First quartile, dependent","Second quartile, dependent","Third quartile, dependent","Fourth quartile, dependent","Independent students","High school diploma or less","Associate&rsquo;s degree or some college","Bachelor&rsquo;s degree","Master&rsquo;s degree or higher","White","Black/African American","Hispanic/Latino","Asian","Another race","Public 4-year","Private nonprofit 4-year","Public 2-year","Private for profit","Other","No","Yes","Without children","With children"]
-var BAR_HEIGHT = 60,
-	BAR_RATIO = .65;
+var CHART_LABELS = ["","Dependent<br/>$0–$38,800","Dependent<br/>$38,801–$75,000","Dependent<br/>$75,001–$125,200","Dependent<br/>$125,201+","Independent","High school diploma or less","Associate&rsquo;s degree or some college","Bachelor&rsquo;s degree","Master&rsquo;s degree or higher","White","Black or African American","Hispanic or Latino","Asian","Another race or ethnicity","Public four-year","Private nonprofit four-year","Public two-year","Private for-profit","Other","No","Yes","Without children","With children"]
+
+var TT_TEXT = [
+	["oneYear", "Adjusted to capture summer Pell awards.", "-85px"],
+	["tenYear", "This estimate does not account for changes in college enrollment and aid application behavior. Adjusted to capture summer Pell awards.","-185px"],
+	["avgGrant", "Refers to the average grant size among Pell recipients. Does not include summer Pell awards.","-145px"],
+	["income", "Income for dependent students is family income, categorized into quartiles.","-125px"],
+	["benefits", "See the appendix for the full list of programs.","-105px"]
+]
+
+var BAR_HEIGHT = function(){
+	if(PRINT) return 30
+	else return 60
+}
+var	BAR_RATIO = function(){
+	if(PRINT) return .45
+	else return .65
+}
+var BAR_COUNT = 88;
 
 var THOUSANDS = d3.format("$,.0f")
 var PERCENT = d3.format(".0%")
@@ -75,13 +91,28 @@ function getUnits(scenario){
 function getInputs(scenario){
 	var units = getUnits(scenario);
 
-	if(scenario == "s1"){
-		return {"a": d3.select(".slider.a.s1").node().value }
+	if(PRINT){
+		if (scenario == "s1" || scenario == "s1P"){
+			console.log(getQueryString("a1"))
+			return {"a": +getQueryString("a1") }
+		}else{
+			return {
+				"a": +getQueryString("a2"),
+				"b": +getQueryString("b"),
+				"c": +getQueryString("c")
+			}
+		}
 	}else{
-		return {
-			"a": d3.select(".slider.a.s2").node().value,
-			"b": d3.select(".slider.b.s2").node().value,
-			"c": d3.select(".slider.c.s2").node().value
+
+		if(scenario == "s1"){
+			return {"a": d3.select(".slider.a.s1").node().value }
+		}
+		else{
+			return {
+				"a": d3.select(".slider.a.s2").node().value,
+				"b": d3.select(".slider.b.s2").node().value,
+				"c": d3.select(".slider.c.s2").node().value
+			}
 		}
 	}
 }
@@ -98,25 +129,21 @@ function getKey(scenario){
 	var units = getUnits(scenario)
 	var inputs = getInputs(scenario)
 
-	if (PRINT){
-		if (scenario == "s1"){
-			return scenario + "_" + toKeyString(inputs["a"]) + "_" + units
-		}else{
-			return scenario + "_" + toKeyString(inputs["a"]) + "_" + toKeyString(inputs["b"]) + "_" + toKeyString(inputs["c"]) + "_" + units
-		}
 
-	}else{
-		if (scenario == "s1"){
-			return scenario + "_" + toKeyString(inputs["a"]) + "_" + units
-		}else{
-			return scenario + "_" + toKeyString(inputs["a"]) + "_" + toKeyString(inputs["b"]) + "_" + toKeyString(inputs["c"]) + "_" + units
+		if (scenario == "s1" || scenario == "s1P"){
+			return "s1" + "_" + toKeyString(inputs["a"]) + "_" + units
 		}
-	}
+		else if (scenario == "s2" || scenario == "s2P"){
+			return "s2" + "_" + toKeyString(inputs["a"]) + "_" + toKeyString(inputs["b"]) + "_" + toKeyString(inputs["c"]) + "_" + units
+		}
+	
 }
 
 function getChartWidth(){
-	if(IS_MOBILE()){
-		console.log("foo")
+	if(PRINT){
+		return 300
+	}
+	else if(IS_MOBILE()){
 		return (d3.select(".chartContainer").node().getBoundingClientRect().width + 50);
 	}
 	else if(IS_1000()){
@@ -131,6 +158,22 @@ function getChartWidth(){
 }
 
 function buildChart(allData, category, scenario){
+	var printScenario = (scenario == "s1P" || scenario == "s2P")
+	var formatter = (!printScenario) ? PERCENT_FINE : THOUSANDS;
+	var baseline_key = (!printScenario) ? BASELINE_KEY_PERCENT : BASELINE_KEY_DOLLARS;
+	var unit = (!printScenario) ? "percent" : "dollars"
+	var key = getKey(scenario)
+
+	var w = getChartWidth();
+
+    var margin = {top: 20, right: 120, bottom: 30, left: 155},
+    width = w - margin.left - margin.right
+
+
+    var domain = (unit == "percent") ? [0, .85] : [0, 6300]
+
+
+
 	var chartContainer = d3.select(".barContainer." + category + "." + scenario + " .chart")
 
 	var data = allData
@@ -147,10 +190,10 @@ function buildChart(allData, category, scenario){
 
  	var w = getChartWidth();
 
-	var h = data.length * (BAR_HEIGHT + 10) + 40;
+	var h = data.length * (BAR_HEIGHT() + 10) + 40;
 	var svg = chartContainer.append("svg").attr("width", w).attr("height",h)
 
-	var mL = (PRINT) ? 110 : 155;
+	var mL = (PRINT) ? 103 : 155;
 
     var margin = {top: 20, right: 120, bottom: 30, left: mL},
     width = w - margin.left - margin.right,
@@ -164,14 +207,14 @@ function buildChart(allData, category, scenario){
 	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
-	x.domain([0, .85]);
+	x.domain(domain);
 	y.domain(data.map(function(d) { return d.label; }));
 
 	chartContainer.selectAll(".tickLabel")
 		.data(data)
 		.enter().append("div")
 		.attr("class", "tickLabel chartLabel")
-		.style("top", function(d){ return (y(d.label) + BAR_HEIGHT * .4) + "px" })
+		.style("top", function(d){ return (y(d.label) + BAR_HEIGHT() * .4) + "px" })
 		.html(function(d){ return d.label })
 
 
@@ -180,51 +223,59 @@ function buildChart(allData, category, scenario){
 		.enter().append("rect")
 			.attr("class", scenario + " " + "baselineBar")
 			.attr("x", 0)
-			.attr("height", BAR_HEIGHT*BAR_RATIO)
+			.attr("height", BAR_HEIGHT()*BAR_RATIO())
 			.attr("y", function(d) { return y(d.label); })
-			.attr("width", function(d) { return x(d[BASELINE_KEY_PERCENT]); })
+			.attr("width", function(d) { return x(d[baseline_key]); })
 
 	g.selectAll(".bar")
 		.data(data)
 		.enter().append("rect")
-			.attr("class", scenario + " " + category + " " + "bar")
+			.attr("class", scenario + " " + scenario.replace("P","") + "Type " + category + " " + "bar")
 			.attr("x", 0)
-			.attr("height", BAR_HEIGHT*BAR_RATIO)
+			.attr("height", BAR_HEIGHT()*BAR_RATIO())
 			.attr("y", function(d) { return y(d.label); })
-			.attr("width", function(d) { return x(d[getKey(scenario)]); })
+			.attr("width", function(d) { return x(d[key]); })
 
 	g.selectAll(".baselineLine")
 		.data(data)
 		.enter().append("line")
 			.attr("class", scenario + " " + "baselineLine")
-			.attr("x1", function(d) { return x(d[BASELINE_KEY_PERCENT]); })
-			.attr("x2", function(d) { return x(d[BASELINE_KEY_PERCENT]); })
+			.attr("x1", function(d) { return x(d[baseline_key]); })
+			.attr("x2", function(d) { return x(d[baseline_key]); })
 			.attr("y1", function(d) { return y(d.label); })
-			.attr("y2", function(d) { return y(d.label) + BAR_HEIGHT*BAR_RATIO; })
+			.attr("y2", function(d) { return y(d.label) + BAR_HEIGHT()*BAR_RATIO(); })
+
 
 	g.selectAll(".baselineDot")
 		.data(data)
 		.enter().append("circle")
 			.attr("class", scenario + " " + "baselineDot")
-			.attr("cx", function(d) { return x(d[BASELINE_KEY_PERCENT]); })
-			.attr("cy", function(d) { return y(d.label) + BAR_HEIGHT*BAR_RATIO*.5; })
-			.attr("r", 5)
+			.attr("cx", function(d) { return x(d[baseline_key]); })
+			.attr("cy", function(d) { return y(d.label) + BAR_HEIGHT()*BAR_RATIO()*.5; })
+			.attr("r", function(){
+				if (PRINT) return 3
+				else return 5
+			})
 
 	g.selectAll(".baseLineLabel")
 		.data(data)
 		.enter().append("text")
 			.attr("class", scenario + " " + "baseLineLabel")
-			.attr("x", function(d) { return x(d[BASELINE_KEY_PERCENT]) - xScootch(d[BASELINE_KEY_PERCENT], "percent"); })
-			.attr("y", function(d) { return y(d.label) + BAR_HEIGHT*BAR_RATIO*.5 - 25; })
-			.text(function(d){ return PERCENT_FINE(d[BASELINE_KEY_PERCENT]) })
+			.attr("x", function(d) { return x(d[baseline_key]) - xScootch(d[baseline_key], unit); })
+			.attr("y", function(d) {
+				var lScootch = (PRINT) ? 10 : 25;
+				return y(d.label) + BAR_HEIGHT()*BAR_RATIO()*.5 - lScootch;
+			})
+			.text(function(d){ return formatter(d[baseline_key]) })
 
 	g.selectAll(".barLabel")
 		.data(data)
 		.enter().append("text")
 			.attr("class", scenario + " " + "barLabel")
 			.attr("x", function(d) { return x(d[getKey(scenario)]) + 10; })
-			.attr("y", function(d) { return y(d.label) + BAR_HEIGHT*BAR_RATIO*.5 + 4.5; })
-			.text(function(d){ return PERCENT_FINE(d[getKey(scenario)]) })
+			.attr("y", function(d) { return y(d.label) + BAR_HEIGHT()*BAR_RATIO()*.5 + 4.5; })
+			.text(function(d){ return formatter(d[key]) })
+
 
 }
 
@@ -267,10 +318,10 @@ function updateCostData(scenario){
 		var diff = val1 - baseline1
 		var sign = (diff < 0) ? "-" : "+"
 		if(diff > 0){
-			return sign + BILLIONS(Math.abs(diff)) + " from current policy"
+			return sign + BILLIONS(Math.abs(diff)) + " relative to current policy"
 		}
 		else if(diff < 0){
-			return sign + BILLIONS(Math.abs(diff)) + " from current policy"
+			return sign + BILLIONS(Math.abs(diff)) + " relative to current policy"
 		}
 		else{
 			return "Equal to current cost"
@@ -281,10 +332,10 @@ function updateCostData(scenario){
 		var diff = val10 - baseline10
 		var sign = (diff < 0) ? "-" : "+"
 		if(diff > 0){
-			return sign + BIG_BILLIONS(Math.abs(diff)) + " from current policy"
+			return sign + BIG_BILLIONS(Math.abs(diff)) + " relative to current policy"
 		}
 		else if(diff < 0){
-			return sign + BIG_BILLIONS(Math.abs(diff)) + " from current policy"
+			return sign + BIG_BILLIONS(Math.abs(diff)) + " relative to current policy"
 		}
 		else{
 			return "Equal to current policy"
@@ -503,20 +554,73 @@ function openPrintView(){
 	window.open(url, '_blank');
 
 }
-function buildPrintView(){
+function buildPrintInputVals(){
+	var inputs = ["a1","a2","b","c"]
+
+	for (var i = 0; i < inputs.length; i++){
+		var input = inputs[i],
+			formatter = (input == "a1" || input == "a2") ? THOUSANDS : PERCENT;
+		d3.selectAll(".printInputVal." + input).text(formatter(getQueryString(input)))
+	}
+}
+function buildPrintSections(){
+	d3.selectAll(".titleContainerPrint")
+		.html(d3.select("#titleContainer").html())
+}
+function buildPrintView(data){
 	d3.select("body").classed("print", true)
 	PRINT = true;
-	// d3.select("body").append("div").attr("class", "print cover")
+	d3.select("body").append("div").attr("class", "print cover")
 
 	d3.selectAll(".printStart").text("The")
 
+	buildChart(data, "income", "s1P")
+	buildChart(data, "parentsEd", "s1P")
+	buildChart(data, "race", "s1P")
+	buildChart(data, "instType", "s1P")
+	buildChart(data, "benefits", "s1P")
+	buildChart(data, "indep", "s1P")
+
+	buildChart(data, "income", "s2P")
+	buildChart(data, "parentsEd", "s2P")
+	buildChart(data, "race", "s2P")
+	buildChart(data, "instType", "s2P")
+	buildChart(data, "benefits", "s2P")
+	buildChart(data, "indep", "s2P")
+
+	buildCostData(data, "s1P")
+	buildCostData(data, "s2P")
+
+	buildAverageData(data, "s1P")
+	buildAverageData(data, "s2P")
+
+	buildPrintInputVals()
+	buildPrintSections()
+
+}
+
+function showTooltip(){
+	var text, scootch;
+	for (var i = 0; i < TT_TEXT.length; i++){
+		if(d3.select(this).classed(TT_TEXT[i][0])){
+			text = TT_TEXT[i][1]
+			scootch = TT_TEXT[i][2]
+		}
+	}
+	d3.select(this).append("div")
+		.attr("class", "tooltip")
+		.html(text)
+		.style("top", scootch)
+}
+function hideTooltip(){
+	d3.selectAll(".tooltip").remove()
 }
 
 var counter = 0;
 function checkReady() {
   counter += 1;
-  var drawn = d3.select(".bar").node();
-  if (drawn == null) {
+  var drawn = d3.selectAll(".bar").nodes().length
+  if (drawn > BAR_COUNT) {
     if(counter >= 7){
         d3.select("#loadingText")
           .html("Almost done&#8230; thanks for your patience!")
@@ -529,6 +633,10 @@ function checkReady() {
           .style("opacity", 0)
           .on("end", function(){
           	d3.select(this).remove()
+          	if(PRINT){
+          		d3.select(this).remove()
+          		window.print()
+          	}
           })
     },500);
   }
@@ -539,7 +647,9 @@ function checkReady() {
 
 function init(data){
 	if(getQueryString("print") == "print"){
-		buildPrintView()
+		buildPrintView(data)
+	}else{
+		d3.select("body").classed("noPrint", true)
 	}
 	buildChart(data, "income", "s1")
 	buildChart(data, "parentsEd", "s1")
@@ -599,6 +709,9 @@ d3.selectAll(".radioInput.s2").on("input", function(){
 	updateAverageData("s2")
 })
 
+d3.selectAll(".tt").on("mouseover", showTooltip)
+.on("mouseout", hideTooltip)
+
 d3.selectAll(".button.print").on("click", openPrintView)
 
 
@@ -606,6 +719,12 @@ d3.csv("data/data.csv", function(data){
 	init(data)
 })
 checkReady();
+
+	if(getQueryString("print") == "print"){
+		d3.select("body").classed("print", true)
+	}else{
+		d3.select("body").classed("noPrint", true)
+	}
 
 $(window).resize(function(){
 	if(!PRINT){

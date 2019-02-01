@@ -1,6 +1,5 @@
 print
 mobile
-baseline mouseover
 don't forget to redirect https://apps-staging.urban.org/features/tmp/pell-simulator/ to prod
 tooltips:
 	avg pell grant
