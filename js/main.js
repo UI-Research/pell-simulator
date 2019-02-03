@@ -649,30 +649,30 @@ function hideTooltip(){
 
 var counter = 0;
 function checkReady() {
-  // counter += 1;
-  // var drawn = d3.selectAll("rect.bar").nodes().length
-  // if (drawn < BAR_COUNT) {
-  //   if(counter >= 7){
-  //       d3.select("#loadingText")
-  //         .html("Almost done&#8230; thanks for your patience!")
-  //   }
-  //   setTimeout("checkReady()", 100);
-  // } else {
-  //   setTimeout(function(){
-  //       d3.select("#loadingContainer")
-  //         .transition()
-  //         .style("opacity", 0)
-  //         .on("end", function(){
-  //         	d3.select(this).remove()
-  //         	if(PRINT){
-  //         		d3.select(this).remove()
-  //         		window.print()
-  //         	}
-  //         })
-  //   },500);
-  // }
+  counter += 1;
+  var drawn = d3.selectAll("rect.bar").nodes().length
+  if (drawn < BAR_COUNT) {
+    if(counter >= 7){
+        d3.select("#loadingText")
+          .html("Almost done&#8230; thanks for your patience!")
+    }
+    setTimeout("checkReady()", 100);
+  } else {
+    setTimeout(function(){
+        d3.select("#loadingContainer")
+          .transition()
+          .style("opacity", 0)
+          .on("end", function(){
+          	d3.select(this).remove()
+          	if(PRINT){
+          		d3.select(this).remove()
+          		window.print()
+          	}
+          })
+    },500);
+  }
 
-  d3.select("#loadingContainer").remove();
+  // d3.select("#loadingContainer").remove();
 }
 
 
