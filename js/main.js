@@ -225,7 +225,7 @@ function buildChart(allData, category, scenario){
 		.enter().append("div")
 		.attr("class", function(d){
 			var hidden = (d[key] != "") ? " hidden" : ""
-			return "suppressedContainer" + hidden;
+			return "suppressedContainer " + scenario + hidden;
 		})
 		.style("top", function(d){ return (y(d.label) + BAR_HEIGHT() * labelRatio) + "px" })
 		.text("Suppressed")
@@ -466,7 +466,8 @@ function updateCharts(scenario){
 	d3.selectAll(".suppressedContainer." +  scenario)
 		.attr("class", function(d){
 			var hidden = (d[key] != "") ? " hidden" : ""
-			return "suppressedContainer" + hidden;
+			console.log(hidden, d.label)
+			return "suppressedContainer " + scenario + hidden;
 		})
 
 
