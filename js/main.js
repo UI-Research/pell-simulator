@@ -466,7 +466,6 @@ function updateCharts(scenario){
 	d3.selectAll(".suppressedContainer." +  scenario)
 		.attr("class", function(d){
 			var hidden = (d[key] != "") ? " hidden" : ""
-			console.log(hidden, d.label)
 			return "suppressedContainer " + scenario + hidden;
 		})
 
@@ -732,11 +731,15 @@ d3.selectAll(".slider.s2").on("input", function(){
 	updateAverageData("s2");
 
 })
-d3.selectAll(".radioInput.s1").on("input", function(){
+d3.selectAll(".s1 .radioRow").on("click", function(){
+	d3.selectAll(".radioInput.s1").attr("checked","")
+	d3.select(this).select("input").attr("checked","checked")
 	updateCharts("s1")
 	updateAverageData("s1")
 })
-d3.selectAll(".radioInput.s2").on("input", function(){
+d3.selectAll(".s2 .radioRow").on("click", function(){
+	d3.selectAll(".radioInput.s2").attr("checked","")
+	d3.select(this).select("input").attr("checked","checked")
 	updateCharts("s2")
 	updateAverageData("s2")
 })
