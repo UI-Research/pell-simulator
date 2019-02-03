@@ -7,7 +7,8 @@ var TT_TEXT = [
 	["tenYear", "This estimate does not account for changes in college enrollment and aid application behavior. Adjusted to capture summer Pell awards.","-185px"],
 	["avgGrant", "Refers to the average grant size among Pell recipients. Does not include summer Pell awards.","-145px"],
 	["income", "Income for dependent students is family income, categorized into quartiles.","-125px"],
-	["benefits", "See the appendix for the full list of programs.","-105px"]
+	["benefits", "See the appendix for the full list of programs.","-105px"],
+	["suppressed", "SUPPRESSED TEXT NEEDED HERE", "-85px"]
 ]
 
 var BAR_HEIGHT = function(){
@@ -18,7 +19,7 @@ var	BAR_RATIO = function(){
 	if(PRINT) return .45
 	else return .65
 }
-var BAR_COUNT = 88;
+var BAR_COUNT = 44;
 
 var THOUSANDS = d3.format("$,.0f")
 var PERCENT = d3.format(".0%")
@@ -93,7 +94,6 @@ function getInputs(scenario){
 
 	if(PRINT){
 		if (scenario == "s1" || scenario == "s1P"){
-			console.log(getQueryString("a1"))
 			return {"a": +getQueryString("a1") }
 		}else{
 			return {
@@ -193,7 +193,7 @@ function buildChart(allData, category, scenario){
 	var h = data.length * (BAR_HEIGHT() + 10) + 40;
 	var svg = chartContainer.append("svg").attr("width", w).attr("height",h)
 
-	var mL = (PRINT) ? 103 : 155;
+	var mL = (PRINT) ? 108 : 155;
 
     var margin = {top: 20, right: 120, bottom: 30, left: mL},
     width = w - margin.left - margin.right,
@@ -210,12 +210,30 @@ function buildChart(allData, category, scenario){
 	x.domain(domain);
 	y.domain(data.map(function(d) { return d.label; }));
 
+	var labelRatio = (PRINT) ? .5 : .4
+
 	chartContainer.selectAll(".tickLabel")
 		.data(data)
 		.enter().append("div")
 		.attr("class", "tickLabel chartLabel")
-		.style("top", function(d){ return (y(d.label) + BAR_HEIGHT() * .4) + "px" })
+		.style("top", function(d){ return (y(d.label) + BAR_HEIGHT() * labelRatio) + "px" })
 		.html(function(d){ return d.label })
+
+
+	var suppressed = chartContainer.selectAll(".suppressedContainer")
+		.data(data)
+		.enter().append("div")
+		.attr("class", function(d){
+			var hidden = (d[key] != "") ? " hidden" : ""
+			return "suppressedContainer" + hidden;
+		})
+		.style("top", function(d){ return (y(d.label) + BAR_HEIGHT() * labelRatio) + "px" })
+		.text("Suppressed")
+
+	suppressed.append("div")
+		.attr("class", "tt " + scenario + " suppressed")
+		.on("mouseover", showTooltip)
+		.on("mouseout", hideTooltip)
 
 
 	g.selectAll(".baselineBar")
@@ -260,7 +278,10 @@ function buildChart(allData, category, scenario){
 	g.selectAll(".baseLineLabel")
 		.data(data)
 		.enter().append("text")
-			.attr("class", scenario + " " + "baseLineLabel")
+			.attr("class", function(d){
+				var hidden = (d[key] == "") ? " supressed" : ""
+				return scenario + " " + "baseLineLabel" + hidden
+			})
 			.attr("x", function(d) { return x(d[baseline_key]) - xScootch(d[baseline_key], unit); })
 			.attr("y", function(d) {
 				var lScootch = (PRINT) ? 10 : 25;
@@ -275,6 +296,9 @@ function buildChart(allData, category, scenario){
 			.attr("x", function(d) { return x(d[getKey(scenario)]) + 10; })
 			.attr("y", function(d) { return y(d.label) + BAR_HEIGHT()*BAR_RATIO()*.5 + 4.5; })
 			.text(function(d){ return formatter(d[key]) })
+
+
+
 
 
 }
@@ -364,7 +388,6 @@ function updateAverageData(scenario){
 	var formatter = (unit == "percent") ? PERCENT_FINE : THOUSANDS;
 
 	d3.select(".avg." + scenario).text(function(d){
-		console.log(d)
 		return formatter(d[key])
 	})
 }
@@ -396,7 +419,6 @@ function updateCharts(scenario){
 
     var margin = {top: 20, right: 120, bottom: 30, left: 155},
     width = w - margin.left - margin.right
-
 
     var domain = (unit == "percent") ? [0, .85] : [0, 6300]
 
@@ -432,10 +454,20 @@ function updateCharts(scenario){
 	.attr("cx", function(d) { return x(d[baseline_key]); })
 
 	d3.selectAll(".baseLineLabel." +  scenario)
+		.attr("class", function(d){
+			var hidden = (d[key] == "") ? " supressed" : ""
+			return scenario + " " + "baseLineLabel" + hidden
+		})
 		.text(function(d){ return formatter(d[baseline_key])} )
 		.transition()
 			.attr("x", function(d) { return x(d[baseline_key]) - xScootch(d[baseline_key], unit); })
 			
+
+	d3.selectAll(".suppressedContainer." +  scenario)
+		.attr("class", function(d){
+			var hidden = (d[key] != "") ? " hidden" : ""
+			return "suppressedContainer" + hidden;
+		})
 
 
 }
@@ -479,7 +511,6 @@ function updateInputs(scenario){
 			width = d3.select(getInputSelector(this)).node().getBoundingClientRect().width - 14
 
 
-		// console.log(d3.select(d3.select(this).node().parentNode).select(".sliderValue"))
 		scootch -= 4;
 		if(d3.select(this).classed("a") == false){ scootch -= 8}
 
@@ -618,30 +649,30 @@ function hideTooltip(){
 
 var counter = 0;
 function checkReady() {
-  counter += 1;
-  var drawn = d3.selectAll(".bar").nodes().length
-  if (drawn > BAR_COUNT) {
-    if(counter >= 7){
-        d3.select("#loadingText")
-          .html("Almost done&#8230; thanks for your patience!")
-    }
-    setTimeout("checkReady()", 100);
-  } else {
-    setTimeout(function(){
-        d3.select("#loadingContainer")
-          .transition()
-          .style("opacity", 0)
-          .on("end", function(){
-          	d3.select(this).remove()
-          	if(PRINT){
-          		d3.select(this).remove()
-          		window.print()
-          	}
-          })
-    },500);
-  }
+  // counter += 1;
+  // var drawn = d3.selectAll("rect.bar").nodes().length
+  // if (drawn < BAR_COUNT) {
+  //   if(counter >= 7){
+  //       d3.select("#loadingText")
+  //         .html("Almost done&#8230; thanks for your patience!")
+  //   }
+  //   setTimeout("checkReady()", 100);
+  // } else {
+  //   setTimeout(function(){
+  //       d3.select("#loadingContainer")
+  //         .transition()
+  //         .style("opacity", 0)
+  //         .on("end", function(){
+  //         	d3.select(this).remove()
+  //         	if(PRINT){
+  //         		d3.select(this).remove()
+  //         		window.print()
+  //         	}
+  //         })
+  //   },500);
+  // }
 
-  // d3.select("#loadingContainer").remove();
+  d3.select("#loadingContainer").remove();
 }
 
 
@@ -713,6 +744,12 @@ d3.selectAll(".tt").on("mouseover", showTooltip)
 .on("mouseout", hideTooltip)
 
 d3.selectAll(".button.print").on("click", openPrintView)
+
+d3.select("#aboutNavbar").on("click", function() {
+    $('html,body').animate({
+        scrollTop: $("#footerContent").offset().top},
+        'slow');
+});
 
 
 d3.csv("data/data.csv", function(data){

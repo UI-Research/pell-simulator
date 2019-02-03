@@ -116,6 +116,29 @@ a.inverted:hover{
 }
 
 
+/*********************************************************************************/
+/************************       ABOUT NAV BAR     ********************************/
+/*********************************************************************************/
+
+
+#aboutNavbar{
+    display: none;
+    position: absolute;
+    top: 50px;
+    height: 50px;
+    background: #EFEFEF;
+    color: #696969;
+    text-transform: uppercase;
+    font-size: 18px;
+    width: 100%;
+    cursor: pointer;
+}
+#aboutNavTitle{
+    width: 100%;
+    text-align: center;
+    padding-top: 13px;
+}
+
 
 
 /*********************************************************************************/
@@ -1147,8 +1170,8 @@ input[type="radio"]{
 .radioRow span.radio::after {
 	left: -19px;
 	top: -5px;
-	width: 12px;
-	height: 12px;
+	width: 13px;
+	height: 13px;
 	border-radius: 10px;
 	background-color: #ffffff;
 	transition: left .25s, background-color .25s;
@@ -1187,6 +1210,24 @@ input[type="radio"]:checked + label span.s2Type.radio::after {
 }
 .bar{
 	stroke: none;
+}
+
+.suppressedContainer{
+    position: absolute;
+    left: 150px;
+    margin-top: -5px;
+    background: white;
+    padding-top: 4px;
+    padding-bottom: 12px;
+    color: #C4C4C4;
+    font-size: 16px;
+    font-style: italic;
+}
+.suppressedContainer.hidden{
+    display: none;
+}
+.suppressedContainer .tt{
+    top: 6px
 }
 
 
@@ -1246,7 +1287,7 @@ input[type="radio"]:checked + label span.s2Type.radio::after {
 }
 .tickLabel{
 	position: absolute;
-	width: 136px;
+	width: 140px;
 }
 
 .barLabel{
@@ -1256,6 +1297,9 @@ input[type="radio"]:checked + label span.s2Type.radio::after {
 .baseLineLabel{
     font-size: 12px;
     fill: #adabac;
+}
+.baseLineLabel.supressed{
+    opacity: 0;
 }
 
 /*********************************************************************************/
@@ -1431,9 +1475,16 @@ body.print .legend span img {
 }
 body.print .h2.colorText {
     font-weight: bold;
-    font-size: 18px;
+    font-size: 12px;
     margin-bottom: 4px;
     margin-top: 20px;
+    text-transform: uppercase;
+}
+body.print .printInputVal{
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: -3px;
+    margin-bottom: -3px;
 }
 body.print .scenarioContainer{
     display: inline-block;
@@ -1457,6 +1508,7 @@ body.print .radioRow .chartHeader{
 }
 body.print .barContainer .chartHeader{
     font-size: 18px;
+    margin-bottom: -12px;
 }
 
 body.print .largeText{
@@ -1471,6 +1523,10 @@ body.print .baselineText {
     font-size: 12px;
     margin-top: 0px;
 }
+body.print .suppressedContainer{
+    left: 104px;
+}
+
 body.print .costSubcontainer .chartLabel{
     font-weight: normal;
     font-size: 12px;
@@ -1491,13 +1547,14 @@ body.print .scenarioContainer{
 body.print .barContainer{
     width: 50%;
     margin-right: 0px;
+    margin-bottom: -13px;
 }
 body.print #mobileScenario{
     display: none;
 }
 body.print .chartLabel {
     font-size: 12px;
-    width: 101px;
+    width: 105px;
     line-height: 13px;
 }
 body.print #footerContainer .home-print-logo{

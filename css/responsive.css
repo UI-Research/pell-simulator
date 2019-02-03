@@ -24,10 +24,11 @@
 		width: 220px;
 	}
 	body.noPrint .avgContainer, .costSubcontainer {
-		width: 275px;
+		width: 294px;
 	}
 	body.noPrint .avgContainer{
-		margin-left: 18px;
+		margin-left: 35px;
+    	width: 260px;
 	}
 	body.noPrint .chartContainer{
 		width: 590px;
@@ -93,6 +94,10 @@
 	}
 		body.noPrint .chartContainer{
 		width: 100%;
+	}
+	body.noPrint .avgContainer{
+		width: 273px;
+    	margin-left: 55px;
 	}
 
 	body.noPrint .introText{
@@ -194,8 +199,13 @@
 	body.noPrint .avgContainer{
 		margin-top: 20px;
     	margin-bottom: 10px;
+    	margin-left: 22px;
     	display: block;
     	clear: both;
+
+	}
+	body.noPrint #aboutNavbar{
+		display: block;
 	}
 	body.noPrint #title{
 		font-size: 35px;
