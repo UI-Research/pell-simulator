@@ -17,7 +17,7 @@ var BAR_HEIGHT = function(){
 }
 var	BAR_RATIO = function(){
 	if(PRINT) return .45
-	else return .65
+	else return .73
 }
 var BAR_COUNT = 44;
 
@@ -145,7 +145,7 @@ function getChartWidth(){
 		return 300
 	}
 	else if(IS_MOBILE()){
-		return (d3.select(".chartContainer").node().getBoundingClientRect().width + 50);
+		return (d3.select(".chartContainer").node().getBoundingClientRect().width + 20);
 	}
 	else if(IS_1000()){
 		return (d3.select(".chartContainer").node().getBoundingClientRect().width * .5 + 20);
@@ -155,6 +155,17 @@ function getChartWidth(){
 	}
 	else{
 		return 400
+	}
+}
+
+function getMarginLeft(){
+	if(PRINT){
+		return 108
+	}
+	else if(IS_MOBILE()){
+		return 125;
+	}else{
+		return 155;
 	}
 }
 
@@ -194,7 +205,8 @@ function buildChart(allData, category, scenario){
 	var h = data.length * (BAR_HEIGHT() + 10) + 40;
 	var svg = chartContainer.append("svg").attr("width", w).attr("height",h)
 
-	var mL = (PRINT) ? 108 : 155;
+	var mL = getMarginLeft()
+
 
     var margin = {top: 20, right: 120, bottom: 30, left: mL},
     width = w - margin.left - margin.right,
@@ -217,7 +229,14 @@ function buildChart(allData, category, scenario){
 		.data(data)
 		.enter().append("div")
 		.attr("class", "tickLabel chartLabel")
-		.style("top", function(d){ return (y(d.label) + BAR_HEIGHT() * labelRatio) + "px" })
+		.style("top", function(d){
+			var lScootch = (d.label.replace("&rsquo;","").length < 19) ? 7 : 0
+			var printScootch = 0;
+			if(PRINT){
+				printScootch = (lScootch == 0) ? 2 : 3;
+			}
+			return (y(d.label) + BAR_HEIGHT() * labelRatio + lScootch - printScootch) + "px"
+		})
 		.html(function(d){ return d.label })
 
 
@@ -418,7 +437,10 @@ function updateCharts(scenario){
 
 	var w = getChartWidth();
 
-    var margin = {top: 20, right: 120, bottom: 30, left: 155},
+	var mL = getMarginLeft();
+
+
+    var margin = {top: 20, right: 120, bottom: 30, left: mL},
     width = w - margin.left - margin.right
 
     var domain = (unit == "percent") ? [0, .85] : [0, 6300]
@@ -641,8 +663,17 @@ function showTooltip(){
 			scootch = TT_TEXT[i][2]
 		}
 	}
+	var scootchClass;
+	if(this.getBoundingClientRect().x + 70 > window.innerWidth){
+		scootchClass = " left"
+	}
+	else if(this.getBoundingClientRect().x - 70 < 0){
+		scootchClass = " right"
+	}else{
+		scootchClass = ""
+	}
 	d3.select(this).append("div")
-		.attr("class", "tooltip")
+		.attr("class", "tooltip" + scootchClass)
 		.html(text)
 		.style("top", scootch)
 }

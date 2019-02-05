@@ -361,9 +361,11 @@ a.inverted:hover{
     margin-bottom: 20px;
 }
 .legend{
-    margin-top: 40px;
-    margin-bottom: 60px;
+    margin-top: 37px;
+    margin-bottom: 62px;
     position: relative;
+    font-size: 18px;
+    color: #adabac;
 }
 .legend span{
     width: 19px;
@@ -372,7 +374,7 @@ a.inverted:hover{
 .legend span img{
     width: 11px;
     position: absolute;
-    top: -10px;
+    top: -9px;
 }
 .sliderContainer{
 	position: relative;
@@ -425,7 +427,7 @@ a.inverted:hover{
     font-size: 18px;
     font-weight: bold;
     padding: 15px;
-    margin-top: 35px;
+    margin-top: 64px;
     cursor: pointer;
 
 }
@@ -1195,7 +1197,7 @@ input[type="radio"]:checked + label span.s2Type.radio::after {
 	display: inline-block;
     float: left;
     clear: both;
-    margin-top: 40px;
+    margin-top: 59px;
 }
 .barContainer{
 	width: 300px;

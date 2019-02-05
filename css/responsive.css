@@ -173,11 +173,32 @@
 }
 @media(max-width: 769px){
 /* home */
+
+	.tooltip.left{
+		left: -131px;
+	}
+	.tooltip.left::after{
+		margin-left: 45px;
+	}
+
+	.tooltip.right{
+		left: -8px;
+	}
+	.tooltip.right::after{
+		margin-left: -75px;
+	}
+
+
+
 	body.noPrint #isMobile{
 		display: block;
 	}
 	body.noPrint #homeCopy{
 		margin-top: 670px
+	}
+	body.noPrint .tickLabel.chartLabel {
+	    font-size: 14px;
+	    width: 120px;
 	}
 	body.noPrint #titleContainer{
 		border-bottom: 1px solid #D2D2D2;
