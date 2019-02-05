@@ -18,48 +18,60 @@ rHead = ["type","category","subcategory"]
 # for key,val in cats.iteritems():
 # 	print key,val
 
+def formatter(row, header, precision):
+	if precision == 0:
+		return str(int(float(row[h[header]])))
+	else:
+		return str(round(float(row[h[header]]),precision))
+
 for row in cr:
 	rh = ""
 
 # TO BE REMOVED
-	# if(row[h["a"]] != "6000"):
+	# if(row[h["a"]] != "4000" and row[h["a"]] != "6000"):
 	# 	continue
 #################
 
 	if row[h["b"]] == "":
-		rh = "s1_" + row[h["a"]]
+		rh = "s1" + row[h["a"]]
 	else:
-		rh = "s2_" + row[h["a"]] + "_" + row[h["b"]] + "_" + row[h["c"]]
+		rh = "s2" + row[h["a"]] + formatter(row, "b", 1) + formatter(row, "c", 1)
+		
 
 	# print rh
-	rHead.append(rh + "_percent")
-	rHead.append(rh + "_dollars")
-	rHead.append(rh + "_percent_baseline")
-	rHead.append(rh + "_dollars_baseline")
+	rHead.append(rh + "p")
+	rHead.append(rh + "d")
+	if row[h["a"]] == "4000" and row[h["b"]] == "":
+		rHead.append(rh + "pb")
+		rHead.append(rh + "db")
 
 	reshaped[rh] = {}
 
 	for r in rows:
 		if r[2] == "1yr":
-			r.append(row[h["pell_cost_1year"]])
-			r.append(row[h["pell_cost_1year"]])
-			r.append(row[h["pell_cost_1year_baseline"]])
-			r.append(row[h["pell_cost_1year_baseline"]])
+			r.append(formatter(row, "pell_cost_1year", 2))
+			r.append(formatter(row, "pell_cost_1year", 2))
+			if row[h["a"]] == "4000" and row[h["b"]] == "":
+				r.append(formatter(row, "pell_cost_1year_baseline", 2))
+				r.append(formatter(row, "pell_cost_1year_baseline", 2))
 		elif r[2] == "10yr":
-			r.append(row[h["pell_cost_10year"]])
-			r.append(row[h["pell_cost_10year"]])
-			r.append(row[h["pell_cost_10year_baseline"]])
-			r.append(row[h["pell_cost_10year_baseline"]])
+			r.append(formatter(row, "pell_cost_10year", 2))
+			r.append(formatter(row, "pell_cost_10year", 2))
+			if row[h["a"]] == "4000" and row[h["b"]] == "":
+				r.append(formatter(row, "pell_cost_10year_baseline", 2))
+				r.append(formatter(row, "pell_cost_10year_baseline", 2))
 		elif r[2] == "avg":
-			r.append(row[h["receive_pell"]])
-			r.append(row[h["pell_avg"]])
-			r.append(row[h["receive_pell_baseline"]])
-			r.append(row[h["pell_avg_baseline"]])
+			r.append(formatter(row, "receive_pell", 3))
+			r.append(formatter(row, "pell_avg", 0))
+			if row[h["a"]] == "4000" and row[h["b"]] == "":
+				r.append(formatter(row, "receive_pell_baseline", 3))
+				r.append(formatter(row, "pell_avg_baseline", 0))
 		else:
-			r.append(row[h["receive_pell" + r[2] ]])
-			r.append(row[h["pell_avg" + r[2] ]])
-			r.append(row[h["receive_pell" + r[2] + "_baseline"]])
-			r.append(row[h["pell_avg" + r[2] + "_baseline"]])
+			r.append(formatter(row, "receive_pell" + r[2] , 3))
+			r.append(formatter(row, "pell_avg" + r[2] , 0))
+			if row[h["a"]] == "4000" and row[h["b"]] == "":
+				r.append(formatter(row, "receive_pell" + r[2] + "_baseline", 3))
+				r.append(formatter(row, "pell_avg" + r[2] + "_baseline", 0))
 	# r.append()
 
 # print rHead

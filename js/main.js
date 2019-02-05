@@ -3,12 +3,12 @@ var S2_DEFAULTS = {"a": "5000", "b": "0.5", "c": "1"}
 var CHART_LABELS = ["","Dependent<br/>$0–$38,800","Dependent<br/>$38,801–$75,000","Dependent<br/>$75,001–$125,200","Dependent<br/>$125,201+","Independent","High school diploma or less","Associate&rsquo;s degree or some college","Bachelor&rsquo;s degree","Master&rsquo;s degree or higher","White","Black or African American","Hispanic or Latino","Asian","Another race or ethnicity","Public four-year","Private nonprofit four-year","Public two-year","Private for-profit","Other","No","Yes","Without children","With children"]
 
 var TT_TEXT = [
-	["oneYear", "Adjusted to capture summer Pell awards.", "-85px"],
-	["tenYear", "This estimate does not account for changes in college enrollment and aid application behavior. Adjusted to capture summer Pell awards.","-185px"],
-	["avgGrant", "Refers to the average grant size among Pell recipients. Does not include summer Pell awards.","-145px"],
-	["income", "Income for dependent students is family income, categorized into quartiles.","-125px"],
-	["benefits", "See the appendix for the full list of programs.","-105px"],
-	["suppressed", "SUPPRESSED TEXT NEEDED HERE", "-85px"]
+	["oneYear", "Adjusted to capture summer Pell awards.", "-87px"],
+	["tenYear", "This estimate does not account for changes in college enrollment and aid application behavior. Adjusted to capture summer Pell awards.","-193px"],
+	["avgGrant", "Refers to the average grant size among Pell recipients. Does not include summer Pell awards.","-150px"],
+	["income", "Income for dependent students is family income, categorized into quartiles.","-130px"],
+	["benefits", "See the appendix for the full list of programs.","-110px"],
+	["suppressed", "Average values are hidden when the share receiving Pell is less than 1 percent.", "-130px"]
 ]
 
 var BAR_HEIGHT = function(){
@@ -66,8 +66,8 @@ function IS_VERY_SMALL_PHONE(){
 
 
 
-var BASELINE_KEY_PERCENT = "s1_4000_percent_baseline"
-var BASELINE_KEY_DOLLARS = "s1_4000_dollars_baseline"
+var BASELINE_KEY_PERCENT = "s14000pb"
+var BASELINE_KEY_DOLLARS = "s14000db"
 
 
 function getQueryString(name) {
@@ -127,14 +127,15 @@ function toKeyString(s){
 
 function getKey(scenario){
 	var units = getUnits(scenario)
+	var shortUnits = (units == "dollars") ? "d" : "p"
 	var inputs = getInputs(scenario)
 
 
 		if (scenario == "s1" || scenario == "s1P"){
-			return "s1" + "_" + toKeyString(inputs["a"]) + "_" + units
+			return "s1" + toKeyString(inputs["a"]) +  shortUnits
 		}
 		else if (scenario == "s2" || scenario == "s2P"){
-			return "s2" + "_" + toKeyString(inputs["a"]) + "_" + toKeyString(inputs["b"]) + "_" + toKeyString(inputs["c"]) + "_" + units
+			return "s2" + toKeyString(inputs["a"]) + toKeyString(inputs["b"]) + toKeyString(inputs["c"]) + shortUnits
 		}
 	
 }
@@ -425,6 +426,8 @@ function updateCharts(scenario){
 	var x = d3.scaleLinear().range([0, width]);
 	x.domain(domain);
 
+	d3.selectAll(".chart svg").attr("width", w)
+
 	d3.selectAll(".bar." + scenario)
 	.transition()
 	.attr("width", function(d) {
@@ -649,30 +652,30 @@ function hideTooltip(){
 
 var counter = 0;
 function checkReady() {
-  counter += 1;
-  var drawn = d3.selectAll("rect.bar").nodes().length
-  if (drawn < BAR_COUNT) {
-    if(counter >= 7){
-        d3.select("#loadingText")
-          .html("Almost done&#8230; thanks for your patience!")
-    }
-    setTimeout("checkReady()", 100);
-  } else {
-    setTimeout(function(){
-        d3.select("#loadingContainer")
-          .transition()
-          .style("opacity", 0)
-          .on("end", function(){
-          	d3.select(this).remove()
-          	if(PRINT){
-          		d3.select(this).remove()
-          		window.print()
-          	}
-          })
-    },500);
-  }
+  // counter += 1;
+  // var drawn = d3.selectAll("rect.bar").nodes().length
+  // if (drawn < BAR_COUNT) {
+  //   if(counter >= 7){
+  //       d3.select("#loadingText")
+  //         .html("Almost done&#8230; thanks for your patience!")
+  //   }
+  //   setTimeout("checkReady()", 100);
+  // } else {
+  //   setTimeout(function(){
+  //       d3.select("#loadingContainer")
+  //         .transition()
+  //         .style("opacity", 0)
+  //         .on("end", function(){
+  //         	d3.select(this).remove()
+  //         	if(PRINT){
+  //         		d3.select(this).remove()
+  //         		window.print()
+  //         	}
+  //         })
+  //   },500);
+  // }
 
-  // d3.select("#loadingContainer").remove();
+  d3.select("#loadingContainer").remove();
 }
 
 

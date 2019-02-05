@@ -162,7 +162,7 @@ a.inverted:hover{
 	margin-bottom: 50px;
 }
 .introText{
-	font-size: 22px;
+	font-size: 24px;
     font-style: italic;
     font-weight: 300;
     line-height: 1.5;
@@ -472,7 +472,7 @@ a.inverted:hover{
 	float: left;
 }
 .costSubcontainer{
-	width: 335px;
+	width: 337px;
 }
 .costSubcontainer{
 	margin-right: 0px;
@@ -480,7 +480,7 @@ a.inverted:hover{
 .avgContainer{
     display: inline-block;
     float: left;
-    margin-left: 95px;
+    margin-left: 92px;
     width: 300px;
     margin-right: 0px;
 }
@@ -543,6 +543,9 @@ a.inverted:hover{
 .tt.s2{
     background-image: url(../img/s2-tt-icon.png);
 }
+.tt.tenYear{
+    top: 4px;
+}
 .tooltip{
     position: absolute;
     font-size: 14px;
@@ -567,8 +570,8 @@ a.inverted:hover{
     pointer-events: none;
     border-color: rgba(136, 183, 213, 0);
     border-top-color: rgba(227,227,227, .9);
-    border-width: 20px;
-    margin-left: -20px;
+    border-width: 15px;
+    margin-left: -15px;
 }
 
 
@@ -1459,6 +1462,10 @@ body.print .p1 {
     font-size: 12px;
     line-height: 14px;
 }
+
+body.print .p1.extraMargin{
+    margin-top: 5px;
+}
 body.print .legend{
     margin-top: 20px;
     margin-bottom: 0px;
@@ -1502,6 +1509,9 @@ body.print #controlsContainer{
 body.print .oneYear .chartHeader, body.print .radioRow .chartHeader{
     font-size: 14px;
     font-weight: normal;
+}
+body.print .benefits .chartHeader{
+    width: 200px;
 }
 body.print .radioRow .chartHeader{
     margin-left: -23px;
@@ -1549,6 +1559,9 @@ body.print .barContainer{
     margin-right: 0px;
     margin-bottom: -13px;
 }
+body.print .suppressedContainer{
+    font-size: 12px;
+}
 body.print #mobileScenario{
     display: none;
 }
@@ -1575,9 +1588,10 @@ body.print #topFooterHeader{
     margin-top: 0px;
     padding-top: 0px;
 }
-  body.print .inputContainer a{
-    text-decoration: none;
-  }
+body.print .inputContainer a{
+text-decoration: none;
+color: #353535;
+}
 @media print{
   @page {
     size: 220mm 297mm; /* portrait 
