@@ -1223,7 +1223,7 @@ input[type="radio"]:checked + label span.s2Type.radio::after {
     margin-top: -5px;
     background: white;
     padding-top: 4px;
-    padding-bottom: 12px;
+    padding-bottom: 17px;
     color: #C4C4C4;
     font-size: 16px;
     font-style: italic;

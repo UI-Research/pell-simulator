@@ -350,10 +350,10 @@ function updateCostData(scenario){
 	var key = getKey(scenario)
 	var units = getUnits(scenario)
 
-	var baseline1 = +oneYear[BASELINE_KEY_PERCENT] * 1000000000
-	var baseline10 = +tenYear[BASELINE_KEY_PERCENT] * 1000000000
-	var val1 = +oneYear[key] * 1000000000
-	var val10 = +tenYear[key] * 1000000000
+	var baseline1 = +oneYear[BASELINE_KEY_PERCENT]
+	var baseline10 = +tenYear[BASELINE_KEY_PERCENT]
+	var val1 = +oneYear[key]
+	var val10 = +tenYear[key]
 
 	d3.select(".oneYear." + scenario + " .costVal").text(BILLIONS(val1))
 	d3.select(".tenYear." + scenario + " .costVal").text(BIG_BILLIONS(val10))

@@ -19,7 +19,9 @@ rHead = ["type","category","subcategory"]
 # 	print key,val
 
 def formatter(row, header, precision):
-	if precision == 0:
+	if row[h[header]] == "":
+		return ""
+	elif precision == 0:
 		return str(int(float(row[h[header]])))
 	else:
 		return str(round(float(row[h[header]]),precision))
