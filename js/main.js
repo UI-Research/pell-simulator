@@ -6,9 +6,10 @@ var TT_TEXT = [
 	["oneYear", "Adjusted to capture summer Pell awards.", "-87px"],
 	["tenYear", "This estimate does not account for changes in college enrollment and aid application behavior. Adjusted to capture summer Pell awards.","-193px"],
 	["avgGrant", "Refers to the average grant size among Pell recipients. Does not include summer Pell awards.","-150px"],
+	["shareReceiving", "We assume that students who do not apply for aid never receive a Pell grant.","-130px"],
 	["income", "Income for dependent students is family income, categorized into quartiles.","-130px"],
 	["benefits", "See the appendix for the full list of programs.","-110px"],
-	["suppressed", "Average values are hidden when the share receiving Pell is less than 1 percent.", "-130px"]
+	["suppressed", "Data suppressed when the share receiving Pell is less than 1 percent.", "-110px"]
 ]
 
 var BAR_HEIGHT = function(){
@@ -182,7 +183,7 @@ function buildChart(allData, category, scenario){
     width = w - margin.left - margin.right
 
 
-    var domain = (unit == "percent") ? [0, .85] : [0, 6300]
+    var domain = (unit == "percent") ? [0, .85] : [0, 7600]
 
 
 
@@ -443,7 +444,7 @@ function updateCharts(scenario){
     var margin = {top: 20, right: 120, bottom: 30, left: mL},
     width = w - margin.left - margin.right
 
-    var domain = (unit == "percent") ? [0, .85] : [0, 6300]
+    var domain = (unit == "percent") ? [0, .85] : [0, 7600]
 
 	var x = d3.scaleLinear().range([0, width]);
 	x.domain(domain);

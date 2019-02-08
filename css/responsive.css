@@ -26,9 +26,9 @@
 	body.noPrint .avgContainer, .costSubcontainer {
 		width: 294px;
 	}
-	body.noPrint .avgContainer{
-		margin-left: 35px;
-    	width: 260px;
+	body.noPrint .avgContainer {
+	    margin-left: 20px;
+	    width: 275px;
 	}
 	body.noPrint .chartContainer{
 		width: 590px;
@@ -120,9 +120,18 @@
     	margin-bottom: 3px;
     }
 	body.noPrint .oneYear .chartHeader, .radioRow .chartHeader{
-    	font-weight: normal;
-    	font-size: 18px;
+		font-weight: normal !important;
+    	font-size: 18px !important;
     }
+    body.noPrint .radioRow span.radio::before {
+    	top: -2px;
+	}
+	body.noPrint .radioRow span.radio::after {
+    	top: -2px;
+	}
+	body.noPrint .tt{
+		top: 5px;
+	}
 	body.noPrint .baselineText{
 		font-size: 14px;
     	margin-top: 1px;
@@ -193,6 +202,10 @@
 	body.noPrint #isMobile{
 		display: block;
 	}
+	body.noPrint .suppressedContainer {
+    	left: 120px;
+    }
+
 	body.noPrint #homeCopy{
 		margin-top: 670px
 	}

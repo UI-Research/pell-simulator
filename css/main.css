@@ -361,8 +361,8 @@ a.inverted:hover{
     margin-bottom: 20px;
 }
 .legend{
-    margin-top: 37px;
-    margin-bottom: 62px;
+    margin-top: 45px;
+    margin-bottom: 47px;
     position: relative;
     font-size: 18px;
     color: #adabac;
@@ -427,7 +427,7 @@ a.inverted:hover{
     font-size: 18px;
     font-weight: bold;
     padding: 15px;
-    margin-top: 64px;
+    margin-top: 54px;
     cursor: pointer;
 
 }
@@ -1203,8 +1203,11 @@ input[type="radio"]:checked + label span.s2Type.radio::after {
 	width: 300px;
 	display: inline-block;
     float: left;
-    margin-right: 50px;
+    /*margin-right: 50px;*/
     margin-top: -10px;
+}
+.barContainer.income, .barContainer.instType, .barContainer.benefits {
+    margin-right: 107px;
 }
 .barContainer.benefits{
 	clear: both;
