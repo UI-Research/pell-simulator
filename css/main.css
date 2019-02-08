@@ -1393,7 +1393,9 @@ body.print .radioRow span::after,
 body.print .sliderLabel,
 body.print .slider,
 body.print #footerContent .button,
-body.print .tt{
+body.print .tt,
+body.print .footerButtonLink
+{
     display: none;
 }
 body.print .home-print-logo{
