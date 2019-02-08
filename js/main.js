@@ -43,7 +43,6 @@ var BIG_BILLIONS = function(val){
 }
 
 var PRINT = false;
-var isIE = false;
 
 function IS_1200(){
   if(PRINT){ return false }
