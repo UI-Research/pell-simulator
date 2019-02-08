@@ -11,6 +11,12 @@ var TT_TEXT = [
 	["benefits", "See the appendix for the full list of programs.","-110px"],
 	["suppressed", "Data suppressed when the share receiving Pell is less than 1 percent.", "-110px"]
 ]
+var isIE = function() {
+var userAgent = navigator.userAgent;
+return userAgent.indexOf('MSIE') !== -1 ||  
+  userAgent.indexOf('Trident') !== -1;
+};
+
 
 var BAR_HEIGHT = function(){
 	if(PRINT) return 30
@@ -752,13 +758,15 @@ d3.select(".scenarioTab.s2").on("click", function(){
 	showScenario("s2")
 })
 
-d3.selectAll(".slider.s1").on("input", function(){
+var sliderEvent = isIE() ? "change" : "input"
+
+d3.selectAll(".slider.s1").on(sliderEvent, function(){
 	updateCharts("s1");
 	updateInputs("s1");
 	updateCostData("s1");
 	updateAverageData("s1");
 })
-d3.selectAll(".slider.s2").on("input", function(){
+d3.selectAll(".slider.s2").on(sliderEvent, function(){
 	checkInputs()
 	updateCharts("s2");
 	updateInputs("s2");
