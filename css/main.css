@@ -1394,7 +1394,9 @@ body.print .sliderLabel,
 body.print .slider,
 body.print #footerContent .button,
 body.print .tt,
-body.print .footerButtonLink
+body.print .footerButtonLink,
+body.print.s1 .s2Type,
+body.print.s2 .s1Type
 {
     display: none;
 }

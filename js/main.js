@@ -611,8 +611,9 @@ function openPrintView(){
 		a1 = s1["a"],
 		a2 = s2["a"],
 		b = s2["b"],
-		c = s2["c"];
-	var url = "index.html?print=print&a1=" + a1 + "&a2=" + a2 + "&b=" + b + "&c=" + c
+		c = s2["c"],
+		scenario = getScenario();
+	var url = "index.html?print=print&a1=" + a1 + "&a2=" + a2 + "&b=" + b + "&c=" + c + "&s=" + scenario
 	window.open(url, '_blank');
 
 }
@@ -631,6 +632,8 @@ function buildPrintSections(){
 }
 function buildPrintView(data){
 	d3.select("body").classed("print", true)
+	var s = getQueryString("s")
+	d3.select("body").classed(s, true)
 	PRINT = true;
 	d3.select("body").append("div").attr("class", "print cover")
 
