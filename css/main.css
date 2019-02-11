@@ -427,9 +427,12 @@ a.inverted:hover{
     font-size: 18px;
     font-weight: bold;
     padding: 15px;
-    margin-top: 54px;
+    margin-top: 44px;
+    margin-bottom: 10px;
     cursor: pointer;
-
+}
+.sidebar.button, #footerContent .button.bottom{
+    margin-top: 10px;
 }
 #footerContent .button{
     border: 2px solid #353535;
@@ -1315,7 +1318,7 @@ input[type="radio"]:checked + label span.s2Type.radio::after {
 /*********************************************************************************/
 
 #footerContainer{
-	margin-top: 90px;
+	margin-top: 45px;
 	border-top: 2px solid #D2D2D2;
 }
 #footerContent{
