@@ -431,7 +431,7 @@ a.inverted:hover{
     margin-bottom: 10px;
     cursor: pointer;
 }
-.sidebar.button, #footerContent .button.bottom{
+#footerContent .button.bottom{
     margin-top: 10px;
 }
 #footerContent .button{
