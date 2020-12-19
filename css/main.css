@@ -378,6 +378,7 @@ a.inverted:hover{
 }
 .sliderContainer{
 	position: relative;
+    height: 10px;
 }
 .sliderLabel{
 	display: inline;
@@ -587,10 +588,11 @@ a.inverted:hover{
 
 
 input[type=range] {
-    display: block;
+    display: table;
     width: 250px;
     float: left;
     margin-top: 12px;
+    margin-bottom: 1px;
     -webkit-appearance: none;
     border: none;
     height: 18px;

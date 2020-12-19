@@ -572,8 +572,8 @@ function updateInputs(scenario){
 }
 
 function checkInputs(){
-	if(d3.select("input.s2.b").node().value > d3.select("input.s2.c").node().value){
-		d3.select("input.s2.b").node().value = d3.select("input.s2.c").node().value
+	if(d3.select("input.s2.b").node().value >= d3.select("input.s2.c").node().value){
+		d3.select("input.s2.b").node().value = d3.select("input.s2.c").node().value - .1
 	}
 }
 
